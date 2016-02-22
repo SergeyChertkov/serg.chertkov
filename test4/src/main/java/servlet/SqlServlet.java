@@ -1,6 +1,9 @@
 package servlet;
 
+import database.DBResult;
 import database.DataBase;
+import database.FindPersonDB;
+import database.Person;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sergii_Chertkov on 2/17/2016.
@@ -24,34 +27,13 @@ public class SqlServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         System.out.println("POST");
-        DataBase db = new DataBase();
-        if (req.getParameter("query")==null) {
-            req.setAttribute("query", "");
-            req.setAttribute("result", "");
-        }
-        else {
-            String query = req.getParameter("query").toString();
-            String result = "";
-            if(query.substring(0,6).toUpperCase().equals("SELECT")) {
-                ResultSet rs = db.select(query);
-                try{
-                    while (rs.next()) {
-                        result += "<br/> Id=" + rs.getInt("id") + " Name=" + rs.getString("name") + " Surame " + rs.getString("surname");
-                    }
-                } catch(Exception e) {
-                    result = "fail";
-                }
-            } else {
-                if (db.execute(query))
-                    result = "success";
-                else
-                    result = "fail";
-            }
-            req.setAttribute("query", query);
-            req.setAttribute("result", result);
-        }
+
+        FindPersonDB per = new FindPersonDB();
+        req.setAttribute("persons",per.name(req.getParameter("name"))
+                .surname(req.getParameter("surname")).mail(req.getParameter("mail"))
+                .date(req.getParameter("date")).getResult());
+
         req.getRequestDispatcher("sql_query.jsp").forward(req, resp);
-        db.close();
     }
 
 }

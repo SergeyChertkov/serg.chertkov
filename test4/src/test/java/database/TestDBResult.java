@@ -1,9 +1,8 @@
 package database;
 
 import org.junit.Test;
-
+import static org.junit.Assert.assertEquals;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
@@ -14,29 +13,39 @@ public class TestDBResult {
     public void test_connect () throws SQLException {
         DataBase db = new DataBase();
         db.execute("DROP TABLE PERSON");
-        db.execute("CREATE TABLE PERSON(id int primary key, name varchar(255), surname varchar(255))");
-        db.execute("INSERT INTO PERSON(id, name, surname) VALUES(1, 'Serg', 'Qwerty')");
-        db.execute("INSERT INTO PERSON(id, name, surname) VALUES(2, 'Den', 'Asdfg')");
-        db.execute("INSERT INTO PERSON(id, name, surname) VALUES(3, 'Ivan', 'Zxcvbn')");
-        ResultSet rs = db.select("select * from PERSON");
+        db.execute("CREATE TABLE PERSON(id int primary key, name varchar(255), surname varchar(255), mail varchar(255), born DATE)");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(1, 'Serg', 'Qwerty', 'Qwerty@test.com', '1977-01-01')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(2, 'Den', 'Asdfg', 'Asdfg@test.com', '1988-02-02')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(3, 'Ivan', 'Zxcvbn', 'Zxcvbn@test.com', '1999-03-03')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(4, 'Petr', 'Dfghjk', 'Dfghjk@test.com', '1999-04-04')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(5, 'Danil', 'Rtyuio', 'Rtyuio@test.com', '1999-05-05')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(6, 'John', 'Hgfds', 'Hgfds@test.com', '1999-06-06')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(7, 'Marc', 'Iuytre', 'Iuytre@test.com', '1999-07-07')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(8, 'Max', 'Plkjhgf', 'Plkjhgf@test.com', '1999-08-08')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(9, 'Truvor', 'Mnbvcxz', 'Mnbvcxz@test.com', '1999-09-09')");
+        db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(10, 'Horiv', 'Ehgfd', 'Ehgfd@test.com', '1999-10-10')");
+        ResultSet rs = db.select("SELECT * FROM PERSON");
 
         DBResult result = new DBResult(rs);
-        //ResultSetMetaData rsmd = rs.getMetaData();
-        //System.out.println(rsmd.getColumnCount());
-        //for (int i=1; i<=rsmd.getColumnCount(); i++)
-        //    System.out.println(rsmd.getColumnLabel(i));
-
-        for (int i=0; i<result.row_count(); i++){
-            for (int j=0; j<result.col_count(); j++){
-                System.out.println(result.get(j,i) + "\t");
-            }
-            System.out.println("\n");
+        /*
+        System.out.print("\n| ");
+        for (int j=0; j<result.col_count(); j++) {
+            System.out.print(result.getColumnName(j) + " | ");
         }
 
-
-        //while (rs.next()) {
-        //    System.out.println("Id "+rs.getString("id")+" Name "+rs.getString("name")+" Surame "+rs.getString("surname"));
-        //}
+        for (int i=0; i<result.row_count(); i++){
+            System.out.print("\n| ");
+            for (int j=0; j<result.col_count(); j++) {
+                System.out.print(result.get(i, j) + " | ");
+            }
+        }
+        System.out.print("\n\n");
+        */
+        assertEquals(result.get(0,0), "1");
+        assertEquals(result.get(1,1), "Den");
+        assertEquals(result.get(2,2), "Zxcvbn");
+        assertEquals(result.get(0,3), "Qwerty@test.com");
+        assertEquals(result.get(1,4), "1988-02-02");
         db.close();
     }
 }

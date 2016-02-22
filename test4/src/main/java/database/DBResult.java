@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by Sergii_Chertkov on 2/19/2016.
  */
 public class DBResult {
-    public ArrayList<String> column_name;
+    private ArrayList<String> column_name;
     private ArrayList<Row> row;
     private int columns;
     private boolean result;
@@ -35,9 +35,15 @@ public class DBResult {
         }
     }
 
-    public String get (int column_id, int row_number){
+    public String get (int row_number, int column_id){
         return row.get(row_number).get(column_id);
     }
+
+    public ArrayList<String> getRow (int row_number){
+        return row.get(row_number).param;
+    }
+
+    public String getColumnName (int id){return column_name.get(id);}
 
     public int row_count (){return row.size();}
 

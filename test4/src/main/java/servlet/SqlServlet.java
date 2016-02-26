@@ -20,7 +20,7 @@ import java.util.List;
 
 @WebServlet(
         name = "SqlServlet",
-        urlPatterns = {"/sql"}
+        urlPatterns = {"/test_jsp"}
 )
 public class SqlServlet extends HttpServlet {
     @Override
@@ -31,7 +31,8 @@ public class SqlServlet extends HttpServlet {
         FindPersonDB per = new FindPersonDB();
         req.setAttribute("persons",per.name(req.getParameter("name"))
                 .surname(req.getParameter("surname")).mail(req.getParameter("mail"))
-                .date(req.getParameter("date")).getResult());
+                .dateFrom(req.getParameter("dateFrom")).dateTo(req.getParameter("dateTo"))
+                .getResult());
 
         req.getRequestDispatcher("sql_query.jsp").forward(req, resp);
     }

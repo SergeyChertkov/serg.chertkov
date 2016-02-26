@@ -19,26 +19,32 @@
 <body>
 
 <h1 align=center>TEST JSP</h1>
-    <form action="/sql" method="GET">
-        <table cellpadding="5">
+    <form action="/test_jsp" method="GET">
+        <!--table cellpadding="5">
             <tr><td> Name: </td> <td> <input type="text" name="name"> </td></tr>
             <tr><td> Surname: </td> <td> <input type="text" name="surname"> </td></tr>
             <tr><td> Mail: </td> <td> <input type="text" name="mail"> </td></tr>
             <tr><td> Date from: </td> <td> <input type="text" name="dateFrom" id="datepickerFrom"> </td></tr>
             <tr><td> Date to: </td> <td> <input type="text" name="dateTo" id="datepickerTo"> </td></tr>
         </table>
+        <br-->
+        <div><input type="submit" value="Search" /></div>
         <br>
-        <input type="submit" value="Submit" />
-    </form>
+    <!--/form-->
 
     <table border=1 width=100% cellpadding="5">
     <tr bgcolor=lightgray align=center>
         <td min-width=10%> <b>ID</b> </td>
-        <td width=25%> <b>NAME</b> </td>
-        <td width=25%> <b>SURNAME</b> </td>
-        <td width=20%> <b>MAIL</b> </td>
-        <td width=20%> <b>BORN</b> </td>
+        <td width=25%> <b>NAME</b><br> <input type="text" name="name"></td>
+        <td width=25%> <b>SURNAME</b><br> <input type="text" name="surname"></td>
+        <td width=20%> <b>MAIL</b><br> <input type="text" name="mail"></td>
+        <td width=20%>
+            <b>BORN</b><br>
+            from <input size=7 type="text" name="dateFrom" id="datepickerFrom">
+            to <input size=7 type="text" name="dateTo" id="datepickerTo">
+        </td>
     </tr>
+    </form>
     <c:forEach var="person" items="${persons}">
         <tr>
             <td width=10% align=center> ${person.id} </td>

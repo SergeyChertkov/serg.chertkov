@@ -9,7 +9,7 @@ import org.h2.tools.*;
 public class DataBase {
     private static final String DB_PATH = "d:/Projects/test4/database";
     private static final String DB_DRIVER = "org.h2.Driver";
-    private static final String DB_CONNECTION = "jdbc:h2:" + DB_PATH + "/test";
+    private static final String DB_CONNECTION = "jdbc:h2:" + DB_PATH + "/test;IGNORECASE=TRUE";
     private static final String DB_USER = "";
     private static final String DB_PASSWORD = "";
     private static Connection connection;

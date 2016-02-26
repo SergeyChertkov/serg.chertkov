@@ -9,7 +9,8 @@ import java.util.List;
 public class FindPersonDB {
     private String name;
     private String surname;
-    private String date;
+    private String dateFrom;
+    private String dateTo;
     private String mail;
     private String query = "SELECT * FROM PERSON";
     private boolean where = false;
@@ -57,19 +58,35 @@ public class FindPersonDB {
         return this;
     }
 
-    public FindPersonDB date (String DATE){
+    public FindPersonDB dateFrom (String DATE){
         if(DATE == null || DATE.equals(""))
             return this;
-        this.date = DATE;
+        this.dateFrom = DATE;
         if (where)
             query += " AND ";
         else{
             query += " WHERE ";
             where = true;
         }
-        query += "DATE='"+date+"'";
+        query += "BORN>='"+dateFrom+"'";
         return this;
     }
+
+    public FindPersonDB dateTo (String DATE){
+        if(DATE == null || DATE.equals(""))
+            return this;
+        this.dateTo = DATE;
+        if (where)
+            query += " AND ";
+        else{
+            query += " WHERE ";
+            where = true;
+        }
+        query += "BORN<='"+dateTo+"'";
+        return this;
+    }
+
+
 
     public List<Person> getResult (){
         DataBase db = new DataBase();

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="com.epam.spring.core.Client" class="com.epam.spring.core.Client">
+        <constructor-arg value="1"/>
+        <constructor-arg value="John Smith"/>
+    </bean>
+
+    <bean id="com.epam.spring.core.ConsoleEventLogger" class="com.epam.spring.core.ConsoleEventLogger">
+    </bean>
+
+    <bean id="com.epam.spring.core.Event" class="com.epam.spring.core.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean id="dateFormat"
+                  class="java.text.DateFormat"
+                  factory-method="getDateTimeInstance"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="com.epam.spring.core.FileEventLogger" class="com.epam.spring.core.FileEventLogger" init-method="init">
+        <constructor-arg value="log.txt"/>
+    </bean>
+
+    <bean id="com.epam.spring.core.CacheFileEventLogger" class="com.epam.spring.core.CacheFileEventLogger"
+            init-method="init"
+            destroy-method="destroy">
+        <constructor-arg value="log.txt"/>
+        <constructor-arg value="3"/>
+    </bean>
+
+    <bean id="com.epam.spring.core.App" class="com.epam.spring.core.App">
+        <constructor-arg ref="com.epam.spring.core.Client"/>
+        <constructor-arg ref="com.epam.spring.core.CacheFileEventLogger"/>
+        <constructor-arg ref="com.epam.spring.core.Event"/>
+    </bean>
+
+</beans>

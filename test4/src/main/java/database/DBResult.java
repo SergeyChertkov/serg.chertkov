@@ -49,6 +49,19 @@ public class DBResult {
 
     public int col_count (){return columns;}
 
+    @Override
+    public String toString() {
+        String str = "\n| ";
+        for (int i=0; i<this.columns; i++){
+            str += column_name.get(i) + " | ";
+        }
+        for (int i=0; i<this.row_count(); i++){
+            str += "\n" + row.get(i).toString();
+        }
+        str += "\n";
+        return str;
+    }
+
     private class Row {
         public ArrayList<String> param;
         public Row(){
@@ -63,6 +76,15 @@ public class DBResult {
         }
         public String get(int id){
             return param.get(id);
+        }
+
+        @Override
+        public String toString(){
+            String str = "| ";
+            for (int i=0; i<param.size(); i++){
+                str += get(i) + " | ";
+            }
+            return str;
         }
     }
 

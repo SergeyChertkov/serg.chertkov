@@ -1,5 +1,6 @@
 package serg.chertkov.evolution.limbs;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +18,14 @@ public class SensorTest {
         sensor = new Sensor(5);
     }
 
+    @After
+    public void endOfTests(){
+
+    }
+
     @Test
     public void testGetImpulses() {
+        //TODO: something
         Assert.assertTrue(true);
     }
 }

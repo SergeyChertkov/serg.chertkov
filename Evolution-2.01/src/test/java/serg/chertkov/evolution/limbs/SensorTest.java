@@ -15,7 +15,7 @@ public class SensorTest {
 
     @Before
     public void setUp(){
-        sensor = new Sensor(5);
+        sensor = new Sensor(new double[] {0,1,2,3});
     }
 
     @After

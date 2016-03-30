@@ -10,10 +10,13 @@ import java.util.List;
 public class Animal implements Action {
     private int nrg;
     private int age;
+    private int position;
     private List<Limb> limbs;
 
     public void action(){
-
+        for(int i=0; i<limbs.size(); i++){
+            limbs.get(i);
+        }
     }
 
     public Animal born() {

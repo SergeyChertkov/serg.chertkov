@@ -15,7 +15,7 @@ public class SensorTest {
 
     @Before
     public void setUp(){
-        sensor = new Sensor(new double[] {0,1,2,3});
+        sensor = new Sensor(new double[] {10, 0,1,2,3});
     }
 
     @After
@@ -24,8 +24,12 @@ public class SensorTest {
     }
 
     @Test
-    public void testGetImpulses() {
+    public void testSensor() {
         //TODO: something
+        double[] actual = sensor.getCoefficients();
+        double[] expected = {0,1,2,3};
+        double delta = 0.0000001;
+        Assert.assertArrayEquals(expected, actual, delta);
         Assert.assertTrue(true);
     }
 }

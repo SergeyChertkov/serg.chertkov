@@ -16,7 +16,6 @@ public class Active extends Limb {
         this.a = new double[this.count];
         this.b = new double[this.count];
         this.c = new double[this.count];
-        this.status = true;
     }
 
     public void setInput(double[] input){

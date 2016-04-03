@@ -2,18 +2,61 @@ package serg.chertkov.evolution.limbs;
 
 
 /**
+ * A class describes the basic properties and methods of limb
+ *
  * Created by sergey on 27.02.2016.
  */
 public abstract class Limb {
-    public boolean status;
+    /**
+     * property of limb
+     */
+    protected int property;
 
-    public void setInput(double[] input){}
+    /**
+     * coefficient[] - coefficients that determine the properties and characteristics of limb
+     */
+    protected double coefficient[];
 
-    public double[] getImpulses(){
-        return new double[]{0};
+    /**
+     * impulse - impulse that comes from the limb
+     */
+    protected double impulse;
+
+    /**
+     * level - level of structure in the animal
+     */
+    protected int level;
+
+    /**
+     * Method accepts incoming data and generates the outgoing impulse
+     * @param input - double[]
+     */
+    public void setInput(double[] input){
+        impulse = 0;
     }
 
-    public int getAction(){
-        return Action.SLEEP;
+
+    /**
+     * Method return values of coefficients that determine the properties and characteristics of limb
+     * @return coefficient - double[]
+     */
+    public double[] getCoefficients(){
+        return this.coefficient;
+    }
+
+    /**
+     * Method return value of impulse that comes from the limb
+     * @return impulse - double
+     */
+    public double getImpulse(){
+        return impulse;
+    }
+
+    /**
+     * Method return level of structure in the animal
+     * @return level - int
+     */
+    public int getLevel(){
+        return this.level;
     }
 }

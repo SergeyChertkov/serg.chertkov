@@ -24,11 +24,16 @@ public class WorldTest {
 
     @Test
     public void testWorld(){
-        Assert.assertEquals(100, new World().size);
-        Assert.assertEquals(100, new World(-123).size);
-        Assert.assertEquals(100, new World(0).size);
-        Assert.assertEquals(20, new World(11).size);
-        Assert.assertEquals(20, new World(19).size);
+        World.generate();
+        Assert.assertEquals(100, World.size);
+        World.generate(-123);
+        Assert.assertEquals(100, World.size);
+        World.generate(0);
+        Assert.assertEquals(100, World.size);
+        World.generate(11);
+        Assert.assertEquals(20, World.size);
+        World.generate(19);
+        Assert.assertEquals(20, World.size);
     }
 
     @Test
@@ -36,7 +41,7 @@ public class WorldTest {
         world.generate();
         int a[] = {0, 0, 0, 0, 0};
         for (int i=0; i<100; i++){
-                switch(world.get(i).type){
+                switch(world.getCell(i).type){
                     case 1: a[0]++; break;
                     case 2: a[1]++; break;
                     case 11: a[2]++; break;

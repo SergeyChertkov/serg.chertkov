@@ -8,12 +8,13 @@ import java.util.List;
  * Created by sergey on 27.02.2016.
  */
 public class Animal implements Action {
-    private int nrg;
-    private int age;
+    private AnimalProperty property;
     private List<Limb> limbs;
 
     public void action(){
-
+        for(int i=0; i<limbs.size(); i++){
+            limbs.get(i);
+        }
     }
 
     public Animal born() {

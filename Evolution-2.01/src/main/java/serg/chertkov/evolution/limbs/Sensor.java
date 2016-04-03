@@ -1,43 +1,33 @@
 package serg.chertkov.evolution.limbs;
 
+import org.apache.commons.lang.ArrayUtils;
+import serg.chertkov.evolution.utils.Utils;
+
 import static java.lang.Math.pow;
 
 /**
  * Created by sergey on 27.02.2016.
  */
 public class Sensor extends Limb {
-    protected  int count;
-    protected double[] input;
-    protected double[] a;
-    protected double[] b;
-    protected double[] c;
 
-    public Sensor(int count){
-        this.count = count;
-        this.input = new double[this.count];
-        this.a = new double[this.count];
-        this.b = new double[this.count];
-        this.c = new double[this.count];
-        this.status = true;
+    public Sensor(double []coefficient){
+        this.level = 1;
+        this.property = (int) coefficient[0];
+        this.coefficient = ArrayUtils.remove(coefficient, 0);
     }
 
-    protected double getImpulse(int id){
-        if(id<this.count)
-            return a[id] * pow(input[id],c[id]) + b[id];
-        else return 0;
+    /**
+     * Method catching outside/inside data and transforming it to impulse
+     * @return
+     */
+    public double dataCatch(int a, int b){
+        return 0;
     }
 
+    @Override
     public void setInput(double[] input){
-        for(int i=0; i<this.count; i++){
-            this.input[i] = input[i];
-        }
+        double inp = dataCatch(0,0);
+        impulse = Utils.neuronFunction((int)(coefficient[0]%20+1),inp, coefficient[1], coefficient[2]);
     }
 
-    public double[] getImpulses(){
-        double[] output = new double[this.count];
-        for(int i=0; i<this.count; i++){
-            output[i] = this.getImpulse(i);
-        }
-        return new double[]{0.0};
-    }
 }

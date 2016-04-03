@@ -1,5 +1,6 @@
 package serg.chertkov.evolution.limbs.sensor;
 
+import serg.chertkov.evolution.EvoData;
 import serg.chertkov.evolution.limbs.Sensor;
 import serg.chertkov.evolution.utils.Utils;
 import serg.chertkov.evolution.world.World;
@@ -26,27 +27,9 @@ public class Scanner extends Sensor {
     public double dataCatch(int a, int b){
         if(property > 404)
             return 0;
-
         generateXYType();
-
-        switch(type){
-            case Sensor.BIOM_SCANER:
-                return World.getType(Utils.offsetCoordinates(a, offset_x),
-                        Utils.offsetCoordinates(b, offset_y));
-            case Sensor.NRG_SCANER:
-                return World.getNrg(Utils.offsetCoordinates(a, offset_x),
-                        Utils.offsetCoordinates(b, offset_y));
-            case Sensor.CORPSE_SCANER:
-                return World.getCorpse(Utils.offsetCoordinates(a, offset_x),
-                        Utils.offsetCoordinates(b, offset_y));
-            case Sensor.ANIMAL_SCANER:
-                return World.getAnimal(Utils.offsetCoordinates(a, offset_x),
-                        Utils.offsetCoordinates(b, offset_y));
-            case Sensor.VOLUME_SCANER:
-                return World.getVolume(Utils.offsetCoordinates(a, offset_x),
-                        Utils.offsetCoordinates(b, offset_y));
-            default: return 0;
-        }
+        return World.getData(type, Utils.offsetCoordinates(a, offset_x),
+                Utils.offsetCoordinates(b, offset_y));
     }
 
     /**

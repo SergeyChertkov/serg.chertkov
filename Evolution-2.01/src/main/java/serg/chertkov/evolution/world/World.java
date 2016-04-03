@@ -14,6 +14,10 @@ public class World {
         return cells.get(i);
     }
 
+    public static int getData(int dataType, int i) {
+        return cells.get(i).getData(dataType);
+    }
+
     public static int getX(int i) {return cells.get(i).getX();}
 
     public static int getY(int i) {return cells.get(i).getY();}
@@ -30,6 +34,10 @@ public class World {
 
     public static Cell getCell(int x, int y){
         return cells.get(size*x+y);
+    }
+
+    public static int getData(int dataType, int x, int y) {
+        return cells.get(size*x+y).getData(dataType);
     }
 
     public static int getType(int x, int y) {return cells.get(size*x+y).getType();}

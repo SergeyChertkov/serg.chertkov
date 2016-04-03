@@ -10,13 +10,6 @@ import static java.lang.Math.pow;
  */
 public class Sensor extends Limb {
 
-    /*types of scanner*/
-    public static final int BIOM_SCANER = 0;
-    public static final int NRG_SCANER = 1;
-    public static final int CORPSE_SCANER = 2;
-    public static final int ANIMAL_SCANER = 3;
-    public static final int VOLUME_SCANER = 4;
-
     public Sensor(double []coefficient){
         this.level = 1;
         this.property = (int) coefficient[0];

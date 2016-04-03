@@ -8,9 +8,7 @@ import java.util.List;
  * Created by sergey on 27.02.2016.
  */
 public class Animal implements Action {
-    private int nrg;
-    private int age;
-    private int position;
+    private AnimalProperty property;
     private List<Limb> limbs;
 
     public void action(){

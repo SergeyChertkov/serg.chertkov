@@ -36,7 +36,13 @@ public class DBResult {
     }
 
     public String get (int row_number, int column_id){
-        return row.get(row_number).get(column_id);
+        String res;
+        try{
+            res = row.get(row_number).get(column_id);
+        } catch(Exception e){
+            return null;
+        }
+        return res;
     }
 
     public ArrayList<String> getRow (int row_number){

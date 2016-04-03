@@ -14,7 +14,7 @@ public class WorldTest {
 
     @Before
     public void setUp(){
-        world = new World(10);
+        world = new World(100);
     }
 
     @After

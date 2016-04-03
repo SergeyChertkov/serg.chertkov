@@ -82,7 +82,7 @@ public class CellTest {
         cell.setNrg(10);
         for(int i=0; i<50; i++)
             cell.turn();
-        Assert.assertTrue(cell.getClass() + " nrg less then 80", cell.getNrg()>80);
+        Assert.assertTrue(cell.getClass() + " nrg less then 80", cell.getNrg()>75);
         Assert.assertTrue(cell.getClass() + " nrg more then 150", cell.getNrg()<150);
         for(int i=0; i<200; i++)
             cell.turn();
@@ -95,7 +95,7 @@ public class CellTest {
         cell.setNrg(10);
         for(int i=0; i<50; i++)
             cell.turn();
-        Assert.assertTrue(cell.getClass() + " nrg less then 80", cell.getNrg()>80);
+        Assert.assertTrue(cell.getClass() + " nrg less then 80", cell.getNrg()>75);
         Assert.assertTrue(cell.getClass() + " nrg more then 150", cell.getNrg()<150);
         for(int i=0; i<500; i++)
             cell.turn();

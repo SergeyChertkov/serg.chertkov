@@ -12,6 +12,9 @@ public class DataBase {
     private static final String DB_USER = "";
     private static final String DB_PASSWORD = "";
     private static Connection connection;
+    private static boolean print = false;
+
+    public static void setPrint(boolean p){print = p;}
 
     public DataBase(){
         DataBase.connection = getDBConnection();
@@ -21,7 +24,7 @@ public class DataBase {
         try {
             DataBase.connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            if(print)e.printStackTrace();
         }
     }
 
@@ -29,13 +32,15 @@ public class DataBase {
         boolean result = false;
         PreparedStatement stmt = null;
         try {
+            if(print)System.out.println("started: "+query);
             stmt = connection.prepareStatement(query);
             stmt.executeUpdate();
             result = true;
+            if(print)System.out.println("complete: "+query);
         } catch (SQLException e) {
-            System.out.println("Exception Message " + e.getLocalizedMessage());
+            if(print)e.printStackTrace();
         } catch (Exception e) {
-            e.printStackTrace();
+            if(print)e.printStackTrace();
         } finally {
             return result;
         }
@@ -45,43 +50,32 @@ public class DataBase {
         ResultSet result = null;
         PreparedStatement stmt = null;
         try {
+            if(print)System.out.println("started: "+query);
             stmt = connection.prepareStatement(query);
             result = stmt.executeQuery();
+            if(print)System.out.println("complete: "+query);
         } catch (SQLException e) {
-            System.out.println("Exception Message " + e.getLocalizedMessage());
+            if(print)e.printStackTrace();
         } catch (Exception e) {
-            e.printStackTrace();
+            if(print)e.printStackTrace();
         } finally {
             return result;
         }
     }
-/*
-    public static void main(String[] args) throws Exception {
-        try {
-            // delete the H2 database named 'test' in the user home directory
-            DeleteDbFiles.execute("DB_PATH", "test", true);
-            insertWithStatement();
-            DeleteDbFiles.execute("DB_PATH", "test", true);
-            insertWithPreparedStatement();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-*/
     private static Connection getDBConnection() {
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            if(print)e.printStackTrace();
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER,
                     DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            if(print)e.printStackTrace();
         }
         return dbConnection;
     }

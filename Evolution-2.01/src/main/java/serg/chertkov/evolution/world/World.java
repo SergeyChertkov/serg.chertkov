@@ -28,34 +28,51 @@ public class World {
     }
 
     public World generate(){
+        DbWorld.create();
+        Cell c;
         for (int x=0; x<size/10; x++)
             for (int y=0; y<size/10; y++) {
 
                 switch ((int) (5 * Math.random())) {
                     case 1:
                         for (int i=0; i<10; i++)
-                            for (int j=0; j<10; j++)
-                                cells.add(ocean());
+                            for (int j=0; j<10; j++) {
+                                c = ocean();
+                                cells.add(c);
+                                DbWorld.setCellToDB(c);
+                            }
                         break;
                     case 2:
                         for (int i=0; i<10; i++)
-                            for (int j=0; j<10; j++)
-                                cells.add(water());
+                            for (int j=0; j<10; j++){
+                                c = water();
+                                cells.add(c);
+                                DbWorld.setCellToDB(c);
+                            }
                         break;
                     case 3:
                         for (int i=0; i<10; i++)
-                            for (int j=0; j<10; j++)
-                                cells.add(desert());
+                            for (int j=0; j<10; j++){
+                                c = desert();
+                                cells.add(c);
+                                DbWorld.setCellToDB(c);
+                            }
                         break;
                     case 4:
                         for (int i=0; i<10; i++)
-                            for (int j=0; j<10; j++)
-                                cells.add(plain());
+                            for (int j=0; j<10; j++){
+                                c = plain();
+                                cells.add(c);
+                                DbWorld.setCellToDB(c);
+                            }
                         break;
                     case 5:
                         for (int i=0; i<10; i++)
-                            for (int j=0; j<10; j++)
-                                cells.add(forest());
+                            for (int j=0; j<10; j++){
+                                c = forest();
+                                cells.add(c);
+                                DbWorld.setCellToDB(c);
+                            }
                         break;
                     default:
                         break;

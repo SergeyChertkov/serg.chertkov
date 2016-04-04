@@ -51,24 +51,21 @@ public class World {
     public static int getVolume(int x, int y) {return cells.get(size*x+y).getVolume();}
 
     public static void generate(){
-        generate(100);
+        generate(10);
     }
 
     public static void generate(int size){
+        DbWorld.create();
+        Cell c;
+
         if(size>0)
-            World.size = size + (10-size%10);
+            World.size = size*10;
         else
             World.size = 100;
         cells = new ArrayList<Cell>();
 
         for (int x=0; x<World.size/10; x++)
             for (int y=0; y<World.size/10; y++) {
-
-     public World generate(){
-        DbWorld.create();
-        Cell c;
-        for (int x=0; x<size/10; x++)
-            for (int y=0; y<size/10; y++) 
                 switch ((int) (5 * Math.random())) {
                     case 1:
                         for (int i=0; i<10; i++)

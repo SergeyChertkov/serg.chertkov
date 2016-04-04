@@ -10,11 +10,10 @@ import org.junit.Test;
  * Created by sergey on 12.03.2016.
  */
 public class WorldTest {
-    private World world;
 
     @Before
     public void setUp(){
-        world = new World(100);
+
     }
 
     @After
@@ -26,22 +25,21 @@ public class WorldTest {
     public void testWorld(){
         World.generate();
         Assert.assertEquals(100, World.size);
-        World.generate(-123);
+        System.out.println("World.generate()");
+        World.generate(-12);
         Assert.assertEquals(100, World.size);
-        World.generate(0);
-        Assert.assertEquals(100, World.size);
-        World.generate(11);
-        Assert.assertEquals(20, World.size);
-        World.generate(19);
-        Assert.assertEquals(20, World.size);
+        System.out.println("World.generate(-12)");
+        World.generate(5);
+        Assert.assertEquals(50, World.size);
+        System.out.println("World.generate(5)");
     }
 
     @Test
     public void testGenerate(){
-        world.generate();
+        World.generate();
         int a[] = {0, 0, 0, 0, 0};
         for (int i=0; i<100; i++){
-                switch(world.getCell(i).type){
+                switch(World.getCell(i).type){
                     case 1: a[0]++; break;
                     case 2: a[1]++; break;
                     case 11: a[2]++; break;

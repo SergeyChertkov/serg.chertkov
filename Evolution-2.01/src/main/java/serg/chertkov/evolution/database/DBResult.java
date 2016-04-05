@@ -57,19 +57,42 @@ public class DBResult {
 
     private class Row {
         public ArrayList<String> param;
+
         public Row(){
             param = new ArrayList<String>();
         }
+
         public Row(ArrayList<String> par){
             param = new ArrayList<String>();
             param = par;
         }
+
         public void add (String p){
             param.add(p);
         }
+
         public String get(int id){
             return param.get(id);
         }
+
+        @Override
+        public String toString(){
+            String res = "|";
+            for (int i=0;i<param.size();i++)
+                res += param.get(i)+"|";
+            return res;
+        }
+    }
+
+    @Override
+    public String toString(){
+        String res="|";
+        for (int i=0; i<columns; i++)
+            res += column_name.get(i)+"|";
+        res += "\n";
+        for (int i=0; i<row_count(); i++)
+            res += row.get(i).toString() + "\n";
+        return res;
     }
 
 }

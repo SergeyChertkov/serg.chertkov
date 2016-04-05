@@ -1,5 +1,7 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.EvoData;
+
 /**
  * Created by sergey on 12.03.2016.
  */
@@ -7,7 +9,7 @@ public class Desert extends Cell {
 
     public Desert(int x, int y){
         super(World.startNrg);
-        type = 11;
+        type = EvoData.BIOME_DESERT;
         this.x = x;
         this.y = y;
     }

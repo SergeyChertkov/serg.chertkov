@@ -1,5 +1,7 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.EvoData;
+
 /**
  * Created by sergey on 12.03.2016.
  */
@@ -7,7 +9,7 @@ public class Water extends Cell {
 
     public Water(int x, int y){
         super(World.startNrg);
-        type = 2;
+        type = EvoData.BIOME_WATER;
         this.x = x;
         this.y = y;
     }

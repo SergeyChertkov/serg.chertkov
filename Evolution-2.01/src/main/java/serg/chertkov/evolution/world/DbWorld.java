@@ -1,5 +1,6 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.EvoData;
 import serg.chertkov.evolution.database.DBResult;
 import serg.chertkov.evolution.database.DataBase;
 
@@ -19,18 +20,22 @@ public class DbWorld {
 
     public static Cell get(int x, int y){
         DataBase.connect();
-        DBResult res = new DBResult(DataBase.select("SELECT XY FROM " + table_world +
-                " WHERE XY=" + generateXY(x,y)));
+        DBResult res = new DBResult(DataBase.select("SELECT * FROM " +
+                DbWorld.table_world + " WHERE XY = " + generateXY(x,y)));
         Cell c = null;
         if(res!=null){
             int type = Integer.valueOf(res.get(0, 2));
             switch(type){
-                case 1: c = new Ocean(x,y); break;
-                case 2: c = new Water(x,y); break;
-                case 11: c = new Desert(x,y); break;
-                case 12: c = new Plain(x,y); break;
-                case 13: c = new Forest(x,y); break;
+                case EvoData.BIOME_OCEAN: c = new Ocean(x,y); break;
+                case EvoData.BIOME_WATER: c = new Water(x,y); break;
+                case EvoData.BIOME_DESERT: c = new Desert(x,y); break;
+                case EvoData.BIOME_PLAIN: c = new Plain(x,y); break;
+                case EvoData.BIOME_FOREST: c = new Forest(x,y); break;
             }
+            c.setType(Integer.valueOf(res.get(0, 1)));
+            c.setNrg(Integer.valueOf(res.get(0, 2)));
+            c.setCorpse(Integer.valueOf(res.get(0, 3)));
+            c.setAnimal(Integer.valueOf(res.get(0, 4)));
         }
         return c;
     }

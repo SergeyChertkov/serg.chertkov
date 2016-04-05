@@ -24,13 +24,10 @@ public class WorldTest {
     public void testWorld(){
         World.generate();
         Assert.assertEquals(100, World.size);
-        System.out.println("World.generate()");
         World.generate(-12);
         Assert.assertEquals(100, World.size);
-        System.out.println("World.generate(-12)");
         World.generate(5);
         Assert.assertEquals(50, World.size);
-        System.out.println("World.generate(5)");
     }
 
     @Test

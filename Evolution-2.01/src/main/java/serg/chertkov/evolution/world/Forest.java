@@ -1,5 +1,7 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.EvoData;
+
 /**
  * Created by sergey on 12.03.2016.
  */
@@ -7,7 +9,7 @@ public class Forest extends Cell {
 
     public Forest(int x, int y){
         super(World.startNrg);
-        type = 13;
+        type = EvoData.BIOME_FOREST;
         this.x = x;
         this.y = y;
     }

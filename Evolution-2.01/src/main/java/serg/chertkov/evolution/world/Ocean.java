@@ -1,5 +1,7 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.EvoData;
+
 /**
  * Created by sergey on 12.03.2016.
  */
@@ -7,7 +9,7 @@ public class Ocean extends Cell {
 
     public Ocean(int x, int y){
         super(World.startNrg);
-        type = 1;
+        type = EvoData.BIOME_OCEAN;
         this.x = x;
         this.y = y;
     }

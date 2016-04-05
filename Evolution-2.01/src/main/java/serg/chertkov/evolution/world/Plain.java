@@ -1,5 +1,7 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.EvoData;
+
 /**
  * Created by sergey on 12.03.2016.
  */
@@ -7,7 +9,7 @@ public class Plain extends Cell{
 
     public Plain(int x, int y){
         super(World.startNrg);
-        type = 12;
+        type = EvoData.BIOME_PLAIN;
         this.x = x;
         this.y = y;
     }

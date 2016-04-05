@@ -1,6 +1,7 @@
 package serg.chertkov.evolution.world;
 
 import org.junit.*;
+import serg.chertkov.evolution.EvoData;
 import serg.chertkov.evolution.database.DBResult;
 import serg.chertkov.evolution.database.DataBase;
 
@@ -32,20 +33,30 @@ public class DbWorldTest {
     }
 
     @Test
+    public void testSetCellToDB(){
+        Cell c = new Ocean(0,0);
+        c.setType(EvoData.BIOME_OCEAN);
+        c.setNrg(2);
+        c.setCorpse(3);
+        c.setAnimal(4);
+        DbWorld.setCellToDB(c);
+        DBResult res = new DBResult(DataBase.select("SELECT * FROM " +
+                DbWorld.table_world + " WHERE XY = 0000000000"));
+        Assert.assertEquals("|XY|TYPE|NRG|CORPSE|ANIMAL|\n|0|"+
+                EvoData.BIOME_OCEAN+"|2|3|4|\n", res.toString());
+    }
+
+    @Test
     public void testGet() throws Exception {
         DbWorld.create();
         DataBase.execute("INSERT INTO " +
                 DbWorld.table_world + " (XY, TYPE, NRG, CORPSE, ANIMAL) " +
-                "VALUES(0000000000, 1, 2, 3, 4)");
-        DBResult res = new DBResult(DataBase.select("SELECT * FROM " +
-                DbWorld.table_world + " WHERE XY = 0000000000"));
-        Assert.assertEquals("0", res.get(0,0));
-        Assert.assertEquals("1", res.get(0,1));
-        Assert.assertEquals("2", res.get(0,2));
-        Assert.assertEquals("3", res.get(0,3));
-        Assert.assertEquals("4", res.get(0,4));
-
-        System.out.println(DbWorld.get(0,0).getType());
+                "VALUES(0000000000, "+EvoData.BIOME_OCEAN+", 2, 3, 4)");
+        Cell c = DbWorld.get(0,0);
+        Assert.assertEquals(EvoData.BIOME_OCEAN, c.getType());
+        Assert.assertEquals(2, c.getNrg());
+        Assert.assertEquals(3, c.getCorpse());
+        Assert.assertEquals(4, c.getAnimal());
     }
 
 }

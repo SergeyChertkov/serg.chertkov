@@ -5,9 +5,11 @@ package serg.chertkov.evolution.world;
  */
 public class Forest extends Cell {
 
-    public Forest(){
+    public Forest(int x, int y){
         super(World.startNrg);
         type = 13;
+        this.x = x;
+        this.y = y;
     }
 
     @Override

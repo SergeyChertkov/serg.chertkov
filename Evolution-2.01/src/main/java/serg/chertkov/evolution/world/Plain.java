@@ -5,9 +5,11 @@ package serg.chertkov.evolution.world;
  */
 public class Plain extends Cell{
 
-    public Plain(){
+    public Plain(int x, int y){
         super(World.startNrg);
         type = 12;
+        this.x = x;
+        this.y = y;
     }
 
     @Override

@@ -73,7 +73,7 @@ public class World {
                     case 1:
                         for (int i=0; i<10; i++)
                             for (int j=0; j<10; j++) {
-                                c = ocean();
+                                c = ocean(x*10+i,y*10+j);
                                 cells.add(c);
                                 DbWorld.setCellToDB(c);
                             }
@@ -81,7 +81,7 @@ public class World {
                     case 2:
                         for (int i=0; i<10; i++)
                             for (int j=0; j<10; j++){
-                                c = water();
+                                c = water(x*10+i,y*10+j);
                                 cells.add(c);
                                 DbWorld.setCellToDB(c);
                             }
@@ -89,7 +89,7 @@ public class World {
                     case 3:
                         for (int i=0; i<10; i++)
                             for (int j=0; j<10; j++){
-                                c = desert();
+                                c = desert(x*10+i,y*10+j);
                                 cells.add(c);
                                 DbWorld.setCellToDB(c);
                             }
@@ -97,7 +97,7 @@ public class World {
                     case 4:
                         for (int i=0; i<10; i++)
                             for (int j=0; j<10; j++){
-                                c = plain();
+                                c = plain(x*10+i,y*10+j);
                                 cells.add(c);
                                 DbWorld.setCellToDB(c);
                             }
@@ -105,7 +105,7 @@ public class World {
                     case 5:
                         for (int i=0; i<10; i++)
                             for (int j=0; j<10; j++){
-                                c = forest();
+                                c = forest(x*10+i,y*10+j);
                                 cells.add(c);
                                 DbWorld.setCellToDB(c);
                             }
@@ -116,69 +116,69 @@ public class World {
             }
     }
 
-    private static Cell ocean(){
+    private static Cell ocean(int x, int y){
         int t = (int)(100*Math.random());
         if (t<80)
-            return new Ocean();
+            return new Ocean(x, y);
         else if (t<85)
-            return new Water();
+            return new Water(x, y);
         else if (t<90)
-            return new Desert();
+            return new Desert(x, y);
         else if (t<95)
-            return new Plain();
-        else return new Forest();
+            return new Plain(x, y);
+        else return new Forest(x, y);
     }
 
-    private static Cell water(){
+    private static Cell water(int x, int y){
         int t = (int)(100*Math.random());
         if (t<80)
-            return new Water();
+            return new Water(x, y);
         else if (t<85)
-            return new Ocean();
+            return new Ocean(x, y);
         else if (t<90)
-            return new Desert();
+            return new Desert(x, y);
         else if (t<95)
-            return new Plain();
-        else return new Forest();
+            return new Plain(x, y);
+        else return new Forest(x, y);
     }
 
-    private static Cell desert(){
+    private static Cell desert(int x, int y){
         int t = (int)(100*Math.random());
         if (t<80)
-            return new Desert();
+            return new Desert(x, y);
         else if (t<85)
-            return new Ocean();
+            return new Ocean(x, y);
         else if (t<90)
-            return new Water();
+            return new Water(x, y);
         else if (t<95)
-            return new Plain();
-        else return new Forest();
+            return new Plain(x, y);
+        else return new Forest(x, y);
     }
 
-    private static Cell plain(){
+    private static Cell plain(int x, int y){
         int t = (int)(100*Math.random());
         if (t<80)
-            return new Plain();
+            return new Plain(x, y);
         else if (t<85)
-            return new Ocean();
+            return new Ocean(x, y);
         else if (t<90)
-            return new Water();
+            return new Water(x, y);
         else if (t<95)
-            return new Desert();
-        else return new Forest();
+            return new Desert(x, y);
+        else return new Forest(x, y);
     }
 
-    private static Cell forest(){
+    private static Cell forest(int x, int y){
         int t = (int)(100*Math.random());
         if (t<80)
-            return new Forest();
+            return new Forest(x, y);
         else if (t<85)
-            return new Ocean();
+            return new Ocean(x, y);
         else if (t<90)
-            return new Ocean();
+            return new Ocean(x, y);
         else if (t<95)
-            return new Desert();
-        else return new Plain();
+            return new Desert(x, y);
+        else return new Plain(x, y);
     }
 
 }

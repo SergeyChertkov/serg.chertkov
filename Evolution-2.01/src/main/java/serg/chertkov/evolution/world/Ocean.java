@@ -5,9 +5,11 @@ package serg.chertkov.evolution.world;
  */
 public class Ocean extends Cell {
 
-    public Ocean(){
+    public Ocean(int x, int y){
         super(World.startNrg);
         type = 1;
+        this.x = x;
+        this.y = y;
     }
 
     @Override

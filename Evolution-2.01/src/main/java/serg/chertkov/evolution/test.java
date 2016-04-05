@@ -16,7 +16,7 @@ public class test {
         DataBase.connect();
         World w = new World();
         DbWorld.create();
-        Cell c = new Ocean();
+        Cell c = new Ocean(0,0);
         DbWorld.setCellToDB(c);
         DBResult res = new DBResult(DataBase.select("SELECT * FROM " +
                 DbWorld.table_world + " LIMIT 1"));

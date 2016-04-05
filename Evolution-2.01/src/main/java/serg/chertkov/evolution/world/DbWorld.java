@@ -25,11 +25,11 @@ public class DbWorld {
         if(res!=null){
             int type = Integer.valueOf(res.get(0, 2));
             switch(type){
-                case 1: c = new Ocean(); break;
-                case 2: c = new Water(); break;
-                case 11: c = new Desert(); break;
-                case 12: c = new Plain(); break;
-                case 13: c = new Forest(); break;
+                case 1: c = new Ocean(x,y); break;
+                case 2: c = new Water(x,y); break;
+                case 11: c = new Desert(x,y); break;
+                case 12: c = new Plain(x,y); break;
+                case 13: c = new Forest(x,y); break;
             }
         }
         return c;

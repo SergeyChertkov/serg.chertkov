@@ -25,21 +25,21 @@ public class CellTest {
 
     @Test
     public void testCell() {
-        cell = new Ocean();
+        cell = new Ocean(0,0);
         Assert.assertTrue(cell.getType()==1);
-        cell = new Water();
+        cell = new Water(0,0);
         Assert.assertTrue(cell.getType()==2);
-        cell = new Desert();
+        cell = new Desert(0,0);
         Assert.assertTrue(cell.getType()==11);
-        cell = new Plain();
+        cell = new Plain(0,0);
         Assert.assertTrue(cell.getType()==12);
-        cell = new Forest();
+        cell = new Forest(0,0);
         Assert.assertTrue(cell.getType()==13);
     }
 
     @Test
     public void testOcean() {
-        cell = new Ocean();
+        cell = new Ocean(0,0);
         cell.setNrg(10);
         for(int i=0; i<50; i++)
             cell.turn();
@@ -52,7 +52,7 @@ public class CellTest {
 
     @Test
     public void testWater() {
-        cell = new Water();
+        cell = new Water(0,0);
         cell.setNrg(10);
         for(int i=0; i<50; i++)
             cell.turn();
@@ -65,7 +65,7 @@ public class CellTest {
 
     @Test
     public void testDesert() {
-        cell = new Desert();
+        cell = new Desert(0,0);
         cell.setNrg(10);
         for(int i=0; i<50; i++)
             cell.turn();
@@ -78,7 +78,7 @@ public class CellTest {
 
     @Test
     public void testPlain() {
-        cell = new Plain();
+        cell = new Plain(0,0);
         cell.setNrg(10);
         for(int i=0; i<50; i++)
             cell.turn();
@@ -91,7 +91,7 @@ public class CellTest {
 
     @Test
     public void testForest() {
-        cell = new Forest();
+        cell = new Forest(0,0);
         cell.setNrg(10);
         for(int i=0; i<50; i++)
             cell.turn();

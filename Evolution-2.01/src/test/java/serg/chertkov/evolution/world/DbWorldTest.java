@@ -44,6 +44,8 @@ public class DbWorldTest {
         Assert.assertEquals("2", res.get(0,2));
         Assert.assertEquals("3", res.get(0,3));
         Assert.assertEquals("4", res.get(0,4));
+
+        System.out.println(DbWorld.get(0,0).getType());
     }
 
 }

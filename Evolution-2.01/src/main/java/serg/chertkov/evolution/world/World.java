@@ -1,5 +1,7 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.database.DataBase;
+
 import java.util.ArrayList;
 
 /**
@@ -50,13 +52,14 @@ public class World {
 
     public static int getVolume(int x, int y) {return cells.get(size*x+y).getVolume();}
 
-    public static void generate(){
+    public static void generate() {
         generate(10);
     }
 
-    public static void generate(int size){
+    public static void generate(int size) {
+        DataBase.connect();
         DbWorld.create();
-        Cell c;
+        Cell c = null;
 
         if(size>0)
             World.size = size*10;
@@ -66,7 +69,7 @@ public class World {
 
         for (int x=0; x<World.size/10; x++)
             for (int y=0; y<World.size/10; y++) {
-                switch ((int) (5 * Math.random())) {
+                switch ((int) (5 * Math.random())+1) {
                     case 1:
                         for (int i=0; i<10; i++)
                             for (int j=0; j<10; j++) {

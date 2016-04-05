@@ -10,20 +10,17 @@ public class DbWorld {
     public static String table_world = "WORLD";
 
     public static void create(){
-        DataBase db = new DataBase();
-        db.execute("DROP TABLE " + table_world);
-        db.execute("CREATE TABLE " + table_world +
+        DataBase.connect();
+        DataBase.execute("DROP TABLE " + table_world);
+        DataBase.execute("CREATE TABLE " + table_world +
                 " (XY int primary key, TYPE int, NRG int, CORPSE int, ANIMAL int)");
         //System.out.println("table " + table_world + " was created.");
-        db.close();
     }
 
     public static Cell get(int x, int y){
-        DataBase db = new DataBase();
-
-        DBResult res = new DBResult(db.select("SELECT XY FROM " + table_world +
+        DataBase.connect();
+        DBResult res = new DBResult(DataBase.select("SELECT XY FROM " + table_world +
                 " WHERE XY=" + generateXY(x,y)));
-        db.close();
         Cell c = null;
         if(res!=null){
             int type = Integer.valueOf(res.get(0, 2));
@@ -46,24 +43,23 @@ public class DbWorld {
     }
 
     public static void setCellToDB(Cell c){
-        DataBase db = new DataBase();
+        DataBase.connect();
         String xy = generateXY(c.getX(),c.getY());
-        DBResult res = new DBResult(db.select("SELECT * FROM " +
+        DBResult res = new DBResult(DataBase.select("SELECT * FROM " +
                 DbWorld.table_world + " WHERE XY = " + xy));
         if(res.get(0,0)==null)
-            db.execute("INSERT INTO " +
+            DataBase.execute("INSERT INTO " +
                     DbWorld.table_world + " (XY, TYPE, NRG, CORPSE, ANIMAL) " +
                     "VALUES(" + xy + ", " + String.valueOf(c.getType()) + ", " +
-                    String.valueOf(c.getNrg()) + ", " + String.valueOf(c.getCorpse() +
-                    ", " + String.valueOf(c.getAnimal())));
+                    String.valueOf(c.getNrg()) + ", " + String.valueOf(c.getCorpse()) +
+                    ", " + String.valueOf(c.getAnimal())+")");
         else
-            db.execute("UPDATE " +
+            DataBase.execute("UPDATE " +
                     DbWorld.table_world + " SET " +
                     "TYPE = " + String.valueOf(c.getType()) +
                     ", NRG = " + String.valueOf(c.getNrg()) +
                     ", CORPSE = " + String.valueOf(c.getCorpse()) +
                     ", ANIMAL  = " + String.valueOf(c.getAnimal()) +
                     " WHERE XY = " + xy);
-        db.close();
     }
 }

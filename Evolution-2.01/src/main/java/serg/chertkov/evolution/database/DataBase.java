@@ -11,24 +11,27 @@ public class DataBase {
     private static final String DB_CONNECTION = "jdbc:h2:" + DB_PATH + "/evolution;IGNORECASE=TRUE";
     private static final String DB_USER = "";
     private static final String DB_PASSWORD = "";
-    private static Connection connection;
+    private static Connection connection = null;
     private static boolean print = false;
 
     public static void setPrint(boolean p){print = p;}
 
-    public DataBase(){
-        DataBase.connection = getDBConnection();
+    public static void connect(){
+        if(DataBase.connection == null){
+            DataBase.connection = getDBConnection();
+        }
     }
 
-    public void close() {
+    public static void close() {
         try {
             DataBase.connection.close();
+            DataBase.connection = null;
         } catch (SQLException e) {
             if(print)e.printStackTrace();
         }
     }
 
-    public boolean execute (String query) {
+    public static boolean execute (String query) {
         boolean result = false;
         PreparedStatement stmt = null;
         try {
@@ -46,7 +49,7 @@ public class DataBase {
         }
     }
 
-    public ResultSet select (String query) {
+    public static ResultSet select (String query) {
         ResultSet result = null;
         PreparedStatement stmt = null;
         try {

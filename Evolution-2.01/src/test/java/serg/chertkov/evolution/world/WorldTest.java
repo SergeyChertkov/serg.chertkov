@@ -1,26 +1,25 @@
 package serg.chertkov.evolution.world;
 
+import org.junit.*;
+import serg.chertkov.evolution.database.DataBase;
 import serg.chertkov.evolution.utils.*;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Created by sergey on 12.03.2016.
  */
 public class WorldTest {
 
-    @Before
-    public void setUp(){
-
+    @BeforeClass
+    public static void setUp(){
+        DataBase.connect();
     }
 
-    @After
-    public void endOfTests(){
-
+    @AfterClass
+    public static void endOfTests(){
+        DataBase.close();
     }
 
+    //@Ignore
     @Test
     public void testWorld(){
         World.generate();
@@ -36,21 +35,23 @@ public class WorldTest {
 
     @Test
     public void testGenerate(){
-        World.generate();
+        World.generate(1);
         int a[] = {0, 0, 0, 0, 0};
         for (int i=0; i<100; i++){
-                switch(World.getCell(i).type){
-                    case 1: a[0]++; break;
-                    case 2: a[1]++; break;
-                    case 11: a[2]++; break;
-                    case 12: a[3]++; break;
-                    case 13: a[4]++; break;
-                }
+            switch(World.getCell(i).getType()){
+                case 1: a[0]++; break;
+                case 2: a[1]++; break;
+                case 11: a[2]++; break;
+                case 12: a[3]++; break;
+                case 13: a[4]++; break;
+                default:
             }
+        }
         int max = Utils.MaxIndex(a);
-        for(int i=1; i< a.length; i++)
+        for(int i=0; i< a.length; i++){
             if(i!=max) Assert.assertTrue("The recessive cells is more than 10%", a[i]<10);
-        else Assert.assertTrue("The dominant cell is less than 70%", a[i]>70);
+            else Assert.assertTrue("The dominant cell is less than 70%", a[i]>70);
+        }
     }
 
 }

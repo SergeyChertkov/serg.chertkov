@@ -8,9 +8,13 @@ import java.util.ArrayList;
  * Created by sergey on 12.03.2016.
  */
 public class World {
-    public static int size;
+    private static int size;
     private static ArrayList<Cell> cells;
     public static int startNrg = 1;
+
+    public static int size(){
+        return size;
+    }
 
     public static Cell getCell(int i){
         return cells.get(i);

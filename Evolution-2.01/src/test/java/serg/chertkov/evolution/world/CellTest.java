@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import serg.chertkov.evolution.EvoData;
 
 import static org.junit.Assert.*;
 
@@ -35,6 +36,20 @@ public class CellTest {
         Assert.assertTrue(cell.getType()==12);
         cell = new Forest(0,0);
         Assert.assertTrue(cell.getType()==13);
+    }
+
+    @Test
+    public void testGetData() {
+        cell = new Ocean(0,0);
+        cell.setNrg(2);
+        cell.setCorpse(3);
+        cell.setAnimal(4);
+        cell.setVolume(5);
+
+        Assert.assertEquals(2, cell.getData(EvoData.CELLS_NRG));
+        Assert.assertEquals(3, cell.getData(EvoData.CELLS_CORPSE));
+        Assert.assertEquals(4, cell.getData(EvoData.CELLS_ANIMAL));
+        Assert.assertEquals(5, cell.getData(EvoData.CELLS_VOLUME));
     }
 
     @Test

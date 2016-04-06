@@ -23,11 +23,11 @@ public class WorldTest {
     @Test
     public void testWorld(){
         World.generate();
-        Assert.assertEquals(100, World.size);
+        Assert.assertEquals(100, World.size());
         World.generate(-12);
-        Assert.assertEquals(100, World.size);
+        Assert.assertEquals(100, World.size());
         World.generate(5);
-        Assert.assertEquals(50, World.size);
+        Assert.assertEquals(50, World.size());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class WorldTest {
                 default:
             }
         }
-        int max = Utils.MaxIndex(a);
+        int max = Utils.maxIndex(a);
         for(int i=0; i< a.length; i++){
             if(i!=max) Assert.assertTrue("The recessive cells is more than 10%", a[i]<10);
             else Assert.assertTrue("The dominant cell is less than 70%", a[i]>70);

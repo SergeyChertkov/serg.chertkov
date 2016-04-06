@@ -1,6 +1,7 @@
 package serg.chertkov.evolution.world;
 
 import org.junit.*;
+import serg.chertkov.evolution.EvoData;
 import serg.chertkov.evolution.database.DataBase;
 import serg.chertkov.evolution.utils.*;
 
@@ -49,6 +50,65 @@ public class WorldTest {
             if(i!=max) Assert.assertTrue("The recessive cells is more than 10%", a[i]<10);
             else Assert.assertTrue("The dominant cell is less than 70%", a[i]>70);
         }
+    }
+
+    @Test
+    public void testGetterSetterByID() {
+        World.generate(1);
+        Cell c;
+        for (int i = 0; i < 100; i++) {
+            Assert.assertTrue(World.getType(i) > 0);
+            Assert.assertEquals(1, World.getNrg(i));
+            Assert.assertEquals(0, World.getCorpse(i));
+            Assert.assertEquals(0, World.getAnimal(i));
+            Assert.assertEquals(0, World.getVolume(i));
+            Assert.assertEquals(i / 10, World.getX(i));
+            Assert.assertEquals(i % 10, World.getY(i));
+
+            Assert.assertTrue(World.getData(EvoData.CELLS_BIOME, i) > 0);
+            Assert.assertEquals(1, World.getData(EvoData.CELLS_NRG, i));
+            Assert.assertEquals(0, World.getData(EvoData.CELLS_CORPSE, i));
+            Assert.assertEquals(0, World.getData(EvoData.CELLS_ANIMAL, i));
+            Assert.assertEquals(0, World.getData(EvoData.CELLS_VOLUME, i));
+
+            c = World.getCell(i);
+            Assert.assertTrue(c.getType() > 0);
+            Assert.assertEquals(1, c.getNrg());
+            Assert.assertEquals(0, c.getCorpse());
+            Assert.assertEquals(0, c.getAnimal());
+            Assert.assertEquals(0, c.getVolume());
+            Assert.assertEquals(i / 10, c.getX());
+            Assert.assertEquals(i % 10, c.getY());
+        }
+    }
+
+    @Test
+    public void testGetterSetterByCoordinates(){
+        World.generate(1);
+        Cell c;
+        for(int x=0; x<10; x++)
+            for(int y=0; y<10; y++) {
+                Assert.assertTrue(World.getType(x, y) > 0);
+                Assert.assertEquals(1, World.getNrg(x, y));
+                Assert.assertEquals(0, World.getCorpse(x, y));
+                Assert.assertEquals(0, World.getAnimal(x, y));
+                Assert.assertEquals(0, World.getVolume(x, y));
+
+                Assert.assertTrue(World.getData(EvoData.CELLS_BIOME, x, y) > 0);
+                Assert.assertEquals(1, World.getData(EvoData.CELLS_NRG, x, y));
+                Assert.assertEquals(0, World.getData(EvoData.CELLS_CORPSE, x, y));
+                Assert.assertEquals(0, World.getData(EvoData.CELLS_ANIMAL, x, y));
+                Assert.assertEquals(0, World.getData(EvoData.CELLS_VOLUME, x, y));
+
+                c = World.getCell(x, y);
+                Assert.assertTrue(c.getType() > 0);
+                Assert.assertEquals(1, c.getNrg());
+                Assert.assertEquals(0, c.getCorpse());
+                Assert.assertEquals(0, c.getAnimal());
+                Assert.assertEquals(0, c.getVolume());
+                Assert.assertEquals(x, c.getX());
+                Assert.assertEquals(y, c.getY());
+            }
     }
 
 }

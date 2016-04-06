@@ -63,7 +63,7 @@ public class World {
     public static void generate(int size) {
         DataBase.connect();
         DbWorld.create();
-        Cell c = null;
+        Cell c;
 
         if(size>0)
             World.size = size*10;

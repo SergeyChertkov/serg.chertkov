@@ -54,12 +54,17 @@ public class CellTest {
 
     @Test
     public void testOcean() {
-        cell = new Ocean(0,0);
-        cell.setNrg(10);
-        for(int i=0; i<50; i++)
-            cell.turn();
-        Assert.assertTrue(cell.getClass() + " nrg less then 150", cell.getNrg()>150);
-        Assert.assertTrue(cell.getClass() + " nrg more then 300", cell.getNrg()<300);
+        int nrg = 0;
+        int retry = 10;
+        for(int j=0; j<retry; j++) {
+            cell = new Ocean(0,0);
+            cell.setNrg(10);
+            for (int i = 0; i < 50; i++)
+                cell.turn();
+            nrg += cell.getNrg();
+        }
+        Assert.assertTrue(cell.getClass() + " nrg less then 150", nrg/retry>150);
+        Assert.assertTrue(cell.getClass() + " nrg more then 300", nrg/retry<300);
         for(int i=0; i<100; i++)
             cell.turn();
         Assert.assertEquals(1000, cell.getNrg());
@@ -67,12 +72,17 @@ public class CellTest {
 
     @Test
     public void testWater() {
-        cell = new Water(0,0);
-        cell.setNrg(10);
-        for(int i=0; i<50; i++)
-            cell.turn();
-        Assert.assertTrue(cell.getClass() + " nrg less then 150", cell.getNrg()>150);
-        Assert.assertTrue(cell.getClass() + " nrg more then 300", cell.getNrg()<300);
+        int nrg = 0;
+        int retry = 10;
+        for(int j=0; j<retry; j++) {
+            cell = new Water(0,0);
+            cell.setNrg(10);
+            for (int i = 0; i < 50; i++)
+                cell.turn();
+            nrg += cell.getNrg();
+        }
+        Assert.assertTrue(cell.getClass() + " nrg less then 150", nrg/retry>150);
+        Assert.assertTrue(cell.getClass() + " nrg more then 300", nrg/retry<300);
         for(int i=0; i<100; i++)
             cell.turn();
         Assert.assertEquals(3000, cell.getNrg());
@@ -80,12 +90,17 @@ public class CellTest {
 
     @Test
     public void testDesert() {
-        cell = new Desert(0,0);
-        cell.setNrg(10);
-        for(int i=0; i<50; i++)
-            cell.turn();
-        Assert.assertTrue(cell.getClass() + " nrg less then 10", cell.getNrg()>10);
-        Assert.assertTrue(cell.getClass() + " nrg more then 20", cell.getNrg()<20);
+        int nrg = 0;
+        int retry = 10;
+        for(int j=0; j<retry; j++) {
+            cell = new Desert(0,0);
+            cell.setNrg(10);
+            for (int i = 0; i < 50; i++)
+                cell.turn();
+            nrg += cell.getNrg();
+        }
+        Assert.assertTrue(cell.getClass() + " nrg less then 10", nrg/retry>10);
+        Assert.assertTrue(cell.getClass() + " nrg more then 20", nrg/retry<20);
         for(int i=0; i<1500; i++)
             cell.turn();
         Assert.assertEquals(100, cell.getNrg());
@@ -93,12 +108,17 @@ public class CellTest {
 
     @Test
     public void testPlain() {
-        cell = new Plain(0,0);
-        cell.setNrg(10);
-        for(int i=0; i<50; i++)
-            cell.turn();
-        Assert.assertTrue(cell.getClass() + " nrg less then 80", cell.getNrg()>75);
-        Assert.assertTrue(cell.getClass() + " nrg more then 150", cell.getNrg()<150);
+        int nrg = 0;
+        int retry = 10;
+        for(int j=0; j<retry; j++) {
+            cell = new Plain(0,0);
+            cell.setNrg(10);
+            for (int i = 0; i < 50; i++)
+                cell.turn();
+            nrg += cell.getNrg();
+        }
+        Assert.assertTrue(cell.getClass() + " nrg less then 80", nrg/retry>75);
+        Assert.assertTrue(cell.getClass() + " nrg more then 150", nrg/retry<150);
         for(int i=0; i<200; i++)
             cell.turn();
         Assert.assertEquals(2000, cell.getNrg());
@@ -106,12 +126,17 @@ public class CellTest {
 
     @Test
     public void testForest() {
-        cell = new Forest(0,0);
-        cell.setNrg(10);
-        for(int i=0; i<50; i++)
-            cell.turn();
-        Assert.assertTrue(cell.getClass() + " nrg less then 80", cell.getNrg()>75);
-        Assert.assertTrue(cell.getClass() + " nrg more then 150", cell.getNrg()<150);
+        int nrg = 0;
+        int retry = 10;
+        for(int j=0; j<retry; j++) {
+            cell = new Forest(0,0);
+            cell.setNrg(10);
+            for (int i = 0; i < 50; i++)
+                cell.turn();
+            nrg += cell.getNrg();
+        }
+        Assert.assertTrue(cell.getClass() + " nrg less then 80", nrg/retry>75);
+        Assert.assertTrue(cell.getClass() + " nrg more then 150", nrg/retry<150);
         for(int i=0; i<500; i++)
             cell.turn();
         Assert.assertEquals(5000, cell.getNrg());

@@ -5,8 +5,10 @@ import serg.chertkov.evolution.EvoData;
 /**
  * Created by sergey on 12.03.2016.
  */
-public abstract class Cell {
+public class Cell {
     protected int type;
+    protected int max;
+    protected int growth;
     protected int nrg;
     protected int corpse;
     protected int animal;
@@ -81,7 +83,9 @@ public abstract class Cell {
         return y;
     }
 
-    public void turn(){};
+    public void turn(){}{
+
+    }
 
     public String toString(){
         return "coordinates = (" + String.valueOf(x) +

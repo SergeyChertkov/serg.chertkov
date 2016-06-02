@@ -68,4 +68,12 @@ public class Utils {
         return result;
     }
 
+    public static double transformationCoefficient (int coefficient){
+        double result = 0;
+        if(coefficient<265)
+            result = -1*Math.pow(1.1,-1*(coefficient-264));
+        else if(coefficient>266)
+            result = Math.pow(1.1,(coefficient-264));
+        return result;
+    }
 }

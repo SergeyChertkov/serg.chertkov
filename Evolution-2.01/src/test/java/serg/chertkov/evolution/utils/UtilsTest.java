@@ -20,6 +20,14 @@ public class UtilsTest {
     }
 
     @Test
+    public void testMinIndex(){
+        int[] arr = {75,68,97,31,24,12,53,46};
+        int actual=Utils.minIndex(arr);
+        int expect=5;
+        Assert.assertEquals(expect, actual);
+    }
+
+    @Test
     public void testNeuronFunction(){
         double actual;
         double[] expect = {0, 5, 6, 10, 3.5, 1.5, 5.5, 7, 8, 12, 3.9092974, 2.7278923, 6.7278923, 0.8149601, -6.5551196, -2.5551196};
@@ -50,5 +58,16 @@ public class UtilsTest {
             Assert.assertEquals(expect[i], actual);
         }
 
+    }
+
+    @Test
+    public void testTransformationCoefficient(){
+        int [] arr = {-10, 530, 1, 100, 200, 265, 300, 400, 500, 529};
+        double [] expected = {0, 0, -76961.973682,-6.1432807, -0.0004457, 0, 0.0000255, 0.3520625, 4851.637308, 76961.973682};
+        double [] actual = new double[arr.length];
+        double delta = 0.000001;
+        for(int i=0; i<arr.length; i++)
+            actual[i] = Utils.transformationCoefficient(arr[i]);
+        Assert.assertArrayEquals(expected, actual, delta);
     }
 }

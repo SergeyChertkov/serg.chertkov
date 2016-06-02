@@ -14,9 +14,6 @@ public class Sensor extends Limb {
         this.level = 0;
         this.property = (int) coefficient[0];
         this.coefficient = ArrayUtils.remove(coefficient, 0);
-        this.coefficient = new double[coefficient.length];
-        for (int i=0; i<coefficient.length; i++)
-            this.coefficient[i] = coefficient[i];
     }
 
     /**

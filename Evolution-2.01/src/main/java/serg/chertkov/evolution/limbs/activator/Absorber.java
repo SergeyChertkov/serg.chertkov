@@ -6,7 +6,7 @@ import serg.chertkov.evolution.limbs.Activator;
  * Created by sergey on 27.02.2016.
  */
 public class Absorber extends Activator {
-    public Absorber(int count) {
-        super(count);
+    public Absorber(double []coefficient) {
+        super(coefficient);
     }
 }

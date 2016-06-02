@@ -6,7 +6,7 @@ import serg.chertkov.evolution.limbs.Activator;
  * Created by sergey on 27.02.2016.
  */
 public class Genitals extends Activator {
-    public Genitals(int count) {
-        super(count);
+    public Genitals(double []coefficient) {
+        super(coefficient);
     }
 }

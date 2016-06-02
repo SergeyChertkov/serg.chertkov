@@ -14,6 +14,13 @@ public class Utils {
         return max;
     }
 
+    public static int minIndex(int a[]){
+        int min = 0;
+        for(int i=1; i< a.length; i++)
+            if(a[min]>a[i]) min = i;
+        return min;
+    }
+
     public static double neuronFunction(int number, double impulse, double coefficient_1, double coefficient_2){
         double result;
         switch (number){
@@ -70,10 +77,10 @@ public class Utils {
 
     public static double transformationCoefficient (int coefficient){
         double result = 0;
-        if(coefficient<265)
-            result = -1*Math.pow(1.1,-1*(coefficient-264));
-        else if(coefficient>266)
-            result = Math.pow(1.1,(coefficient-264));
+        if(coefficient<265 && coefficient>0)
+            result = -1*Math.pow(1.1,-1*(coefficient-264))/1000000;
+        else if(coefficient>266 && coefficient<530)
+            result = Math.pow(1.1,((double)coefficient-266))/1000000;
         return result;
     }
 }

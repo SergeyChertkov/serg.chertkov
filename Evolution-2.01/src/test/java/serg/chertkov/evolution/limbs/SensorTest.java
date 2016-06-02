@@ -30,6 +30,5 @@ public class SensorTest {
         double[] expected = {0,1,2,3};
         double delta = 0.0000001;
         Assert.assertArrayEquals(expected, actual, delta);
-        Assert.assertTrue(true);
     }
 }

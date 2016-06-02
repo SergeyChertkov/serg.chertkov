@@ -7,9 +7,9 @@ import serg.chertkov.evolution.utils.Utils;
  * Created by sergey on 27.02.2016.
  */
 public class Activator extends Limb {
-    private int currentAction;
-    private int action = Action.SLEEP;
-    private double takeNrgForAction;
+    protected int currentAction;
+    protected int action = Action.SLEEP;
+    protected double takeNrgForAction;
 
     public Activator(double []coefficient){
         this.action = Action.SLEEP;
@@ -17,9 +17,6 @@ public class Activator extends Limb {
         this.level = 0;
         this.property = (int) coefficient[0];
         this.coefficient = ArrayUtils.remove(coefficient, 0);
-        this.coefficient = new double[coefficient.length];
-        for (int i=0; i<coefficient.length; i++)
-            this.coefficient[i] = coefficient[i];
     }
 
     public void setInput(double[] input){

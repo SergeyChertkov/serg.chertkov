@@ -61,6 +61,12 @@ public class Animal {
         else return null;
     }
 
+    public static Animal animalGenerator (String GENES){
+        int X = (int) (Math.random()*World.WORLD_X);
+        int Y = (int) (Math.random()*World.WORLD_Y);
+        return animalGenerator(GENES, X, Y, 100);
+    }
+
     public static Animal animalGenerator (String GENES, int X, int Y, int NRG){
         if(!World.ifAnimal(X,Y))
             return new Animal (GENES,X,Y,NRG);

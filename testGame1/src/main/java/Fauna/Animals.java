@@ -15,10 +15,14 @@ public class Animals {
             animals.add(animal);
     }
 
+    public static void add(String genes){
+        Animal animal = Animal.animalGenerator(genes);
+        add(animal);
+    }
+
     public static void add(){
         Animal animal = Animal.animalGenerator();
-        if(animal!=null)
-            animals.add(animal);
+        add(animal);
     }
 
     public static Animal get(int index) {

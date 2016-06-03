@@ -19,17 +19,17 @@ public class Scanner extends Sensor {
 
     /**
      *
-     * @param a - need coordinate X of animal for this class
-     * @param b - need coordinate Y of animal for this class
+     * @param X - need coordinate X of animal for this class
+     * @param Y - need coordinate Y of animal for this class
      * @return
      */
     @Override
-    public double dataCatch(int a, int b){
+    public double dataCatch(int X, int Y){
         if(property > 404)
             return 0;
         generateXYType();
-        return World.getData(type, Utils.offsetCoordinates(a, offset_x),
-                Utils.offsetCoordinates(b, offset_y));
+        return World.getData(type, Utils.offsetCoordinates(X, offset_x),
+                Utils.offsetCoordinates(Y, offset_y));
     }
 
     /**

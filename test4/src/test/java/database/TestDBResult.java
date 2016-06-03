@@ -12,8 +12,24 @@ public class TestDBResult {
     @Test
     public void test_connect () throws SQLException {
         DataBase db = new DataBase();
+        db.execute("DROP TABLE members");
+        db.execute("CREATE TABLE members(" +
+                "id int unsigned NOT NULL auto_increment, " +
+                "first_name varchar(45), " +
+                "last_name varchar(45), " +
+                "email varchar(45), " +
+                "uname varchar(45), " +
+                "pass varchar(45), " +
+                "regdate DATE," +
+                "primary key (id)" +
+                ")");
         db.execute("DROP TABLE PERSON");
-        db.execute("CREATE TABLE PERSON(id int primary key, name varchar(255), surname varchar(255), mail varchar(255), born DATE)");
+        db.execute("CREATE TABLE PERSON(" +
+                "id int primary key, " +
+                "name varchar(255), " +
+                "surname varchar(255), " +
+                "mail varchar(255), " +
+                "born DATE)");
         db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(1, 'Serg', 'Qwerty', 'Qwerty@test.com', '1977-01-01')");
         db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(2, 'Den', 'Asdfg', 'Asdfg@test.com', '1988-02-02')");
         db.execute("INSERT INTO PERSON(id, name, surname, mail, born) VALUES(3, 'Ivan', 'Zxcvbn', 'Zxcvbn@test.com', '1999-03-03')");

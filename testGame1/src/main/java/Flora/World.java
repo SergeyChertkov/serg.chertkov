@@ -7,7 +7,7 @@ public class World {
     public static final int WORLD_X = 253;
     public static final int WORLD_Y = 189;
     public static final int maxNrg = 100;
-    public static final boolean TOR = false;
+    public static final boolean TOR = true;
 
     private static Cell [][] cells;
 

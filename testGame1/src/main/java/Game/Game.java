@@ -55,8 +55,8 @@ public class Game extends Canvas implements Runnable {
 
     public void init() {
         turn = 0;
-        //World.generate(0);
-        World.generateCenter();
+        World.generate(0);
+        //World.generateCenter();
         Animals.add();
     }
 

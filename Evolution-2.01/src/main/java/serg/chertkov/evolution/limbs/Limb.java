@@ -23,7 +23,9 @@ public abstract class Limb {
     protected double impulse;
 
     /**
-     * level - level of structure in the animal
+     * level - level of structure in the animal;
+     * sensor always have 0;
+     * activator limbs have always last number.
      */
     protected int level;
 

@@ -11,7 +11,7 @@ import static java.lang.Math.pow;
 public class Sensor extends Limb {
 
     public Sensor(double []coefficient){
-        this.level = 1;
+        this.level = 0;
         this.property = (int) coefficient[0];
         this.coefficient = ArrayUtils.remove(coefficient, 0);
     }

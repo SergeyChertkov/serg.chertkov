@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Created by Sergii_Chertkov on 6/2/2016.
  */
 public class Genes {
+    public static final String AllGenes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static final char START_CODON = 'A';
     public static final char [] END_CODON = {'X','Y','Z'};
 

@@ -1,6 +1,5 @@
 package serg.chertkov.evolution.limbs.sensor;
 
-import serg.chertkov.evolution.EvoData;
 import serg.chertkov.evolution.limbs.Sensor;
 import serg.chertkov.evolution.utils.Utils;
 import serg.chertkov.evolution.world.World;

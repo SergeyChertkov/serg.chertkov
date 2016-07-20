@@ -4,9 +4,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import serg.chertkov.evolution.EvoData;
-
-import static org.junit.Assert.*;
+import serg.chertkov.evolution.utils.EvoData;
 
 /**
  * Created by sergey on 12.03.2016.

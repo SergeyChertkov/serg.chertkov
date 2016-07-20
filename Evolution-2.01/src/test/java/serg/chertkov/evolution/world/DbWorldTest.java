@@ -1,7 +1,7 @@
 package serg.chertkov.evolution.world;
 
 import org.junit.*;
-import serg.chertkov.evolution.EvoData;
+import serg.chertkov.evolution.utils.EvoData;
 import serg.chertkov.evolution.database.DBResult;
 import serg.chertkov.evolution.database.DataBase;
 

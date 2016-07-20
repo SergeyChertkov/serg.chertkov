@@ -1,4 +1,4 @@
-package serg.chertkov.evolution;
+package serg.chertkov.evolution.utils;
 
 /**
  * Created by Sergii_Chertkov on 4/1/2016.

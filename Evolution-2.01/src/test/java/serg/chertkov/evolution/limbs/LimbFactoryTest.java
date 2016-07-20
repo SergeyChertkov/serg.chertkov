@@ -2,6 +2,8 @@ package serg.chertkov.evolution.limbs;
 
 import org.junit.Assert;
 import org.junit.Test;
+import serg.chertkov.evolution.limbs.utils.LimbFactory;
+import serg.chertkov.evolution.limbs.utils.LimbType;
 
 /**
  * Created by Sergii_Chertkov on 7/20/2016.

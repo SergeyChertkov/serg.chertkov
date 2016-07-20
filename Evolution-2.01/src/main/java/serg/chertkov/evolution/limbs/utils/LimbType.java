@@ -1,4 +1,4 @@
-package serg.chertkov.evolution.limbs;
+package serg.chertkov.evolution.limbs.utils;
 
 import serg.chertkov.evolution.utils.Genes;
 

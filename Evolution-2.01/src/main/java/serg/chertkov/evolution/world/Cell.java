@@ -1,6 +1,6 @@
 package serg.chertkov.evolution.world;
 
-import serg.chertkov.evolution.EvoData;
+import serg.chertkov.evolution.utils.EvoData;
 
 /**
  * Created by sergey on 12.03.2016.

@@ -1,5 +1,8 @@
-package serg.chertkov.evolution.limbs;
+package serg.chertkov.evolution.limbs.utils;
 
+import serg.chertkov.evolution.limbs.Empty;
+import serg.chertkov.evolution.limbs.Limb;
+import serg.chertkov.evolution.limbs.Neuron;
 import serg.chertkov.evolution.limbs.activator.*;
 import serg.chertkov.evolution.limbs.passive.*;
 import serg.chertkov.evolution.limbs.sensor.*;

@@ -1,4 +1,4 @@
-package serg.chertkov.evolution.limbs;
+package serg.chertkov.evolution.limbs.utils;
 
 /**
  * Created by sergey on 27.02.2016.

@@ -12,7 +12,7 @@ public class LimbType {
     private static String [] reproductor;
     private static String [] ageSensation;
     private static String [] hunger;
-    private static String [] scaner;
+    private static String [] scanner;
     private static String [] aggressor;
     private static String [] deffender;
     private static String [] neuron;
@@ -26,7 +26,7 @@ public class LimbType {
         reproductor = new String [1];
         ageSensation = new String [1];
         hunger = new String [1];
-        scaner = new String [4];
+        scanner = new String [4];
         aggressor = new String [1];
         deffender = new String [1];
         neuron = new String [1];
@@ -43,8 +43,8 @@ public class LimbType {
             ageSensation[i] = generateGen();
         for (int i=0; i<hunger.length; i++)
             hunger[i] = generateGen();
-        for (int i=0; i<scaner.length; i++)
-            scaner[i] = generateGen();
+        for (int i=0; i<scanner.length; i++)
+            scanner[i] = generateGen();
         for (int i=0; i<aggressor.length; i++)
             aggressor[i] = generateGen();
         for (int i=0; i<deffender.length; i++)
@@ -68,25 +68,25 @@ public class LimbType {
 
     public static String getTypeOfGen(String gen){
         for (int i =0; i<mover.length; i++)
-            if(gen.equals(mover[i])) return "mover"+i;
+            if(gen.equals(mover[i])) return "mover_"+i;
         for (int i =0; i<absorber.length; i++)
-            if(gen.equals(absorber[i])) return "absorber"+i;
+            if(gen.equals(absorber[i])) return "absorber_"+i;
         for (int i =0; i<genitals.length; i++)
-            if(gen.equals(genitals[i])) return "genitals"+i;
+            if(gen.equals(genitals[i])) return "genitals_"+i;
         for (int i =0; i<reproductor.length; i++)
-            if(gen.equals(reproductor[i])) return "reproductor"+i;
+            if(gen.equals(reproductor[i])) return "reproductor_"+i;
         for (int i =0; i<ageSensation.length; i++)
-            if(gen.equals(ageSensation[i])) return "ageSensation"+i;
+            if(gen.equals(ageSensation[i])) return "ageSensation_"+i;
         for (int i =0; i<hunger.length; i++)
-            if(gen.equals(hunger[i])) return "hunger"+i;
-        for (int i =0; i<scaner.length; i++)
-            if(gen.equals(scaner[i])) return "scaner"+i;
+            if(gen.equals(hunger[i])) return "hunger_"+i;
+        for (int i =0; i<scanner.length; i++)
+            if(gen.equals(scanner[i])) return "scanner_"+i;
         for (int i =0; i<aggressor.length; i++)
-            if(gen.equals(aggressor[i])) return "aggressor"+i;
+            if(gen.equals(aggressor[i])) return "aggressor_"+i;
         for (int i =0; i<deffender.length; i++)
-            if(gen.equals(deffender[i])) return "deffender"+i;
+            if(gen.equals(deffender[i])) return "deffender_"+i;
         for (int i =0; i<neuron.length; i++)
-            if(gen.equals(neuron[i])) return "neuron"+i;
+            if(gen.equals(neuron[i])) return "neuron_"+i;
         return "empty";
     }
 
@@ -126,8 +126,8 @@ public class LimbType {
         else return null;
     }
 
-    public static String getScaner(int i){
-        if (i<scaner.length) return scaner[i];
+    public static String getScanner(int i){
+        if (i<scanner.length) return scanner[i];
         else return null;
     }
 

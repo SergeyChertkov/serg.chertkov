@@ -47,7 +47,7 @@ public class WorldTest {
         }
         int max = Utils.maxIndex(a);
         for(int i=0; i< a.length; i++){
-            if(i!=max) Assert.assertTrue("The recessive cells is more than 10%", a[i]<10);
+            if(i!=max) Assert.assertTrue("The recessive cells is more than 15%", a[i]<15);
             else Assert.assertTrue("The dominant cell is less than 70%", a[i]>70);
         }
     }

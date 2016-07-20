@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import serg.chertkov.evolution.world.World;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Sergii_Chertkov on 3/30/2016.
  */

@@ -81,4 +81,13 @@ public class Genes {
         }
         return result;
     }
+
+    public static double [] generateCoefficients (String gen){
+        if (gen.length()<2)
+            return new double [] {0.0};
+        double [] result = new double[gen.length()/2];
+        for (int i=0; i<result.length; i++)
+            result[i] = Utils.transformationCoefficient(transformationGenes(gen.substring(2*i,2*i+2)));
+        return result;
+    }
 }

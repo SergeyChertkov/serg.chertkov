@@ -41,6 +41,8 @@ public class DbWorld {
     }
 
     private static String generateXY(int x, int y){
+        if (x>99999 || y>99999)
+            return null;
         String XY = "0000000000";
         String X = String.valueOf(x);
         String Y = String.valueOf(y);

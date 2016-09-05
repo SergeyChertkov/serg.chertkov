@@ -60,7 +60,7 @@ public class WorldTest {
             Assert.assertTrue(World.getType(i) > 0);
             Assert.assertEquals(1, World.getNrg(i));
             Assert.assertEquals(0, World.getCorpse(i));
-            Assert.assertEquals(0, World.getAnimal(i));
+            Assert.assertEquals("0=AZ=0-0-0-0-0", World.getAnimal(i).toString());
             Assert.assertEquals(0, World.getVolume(i));
             Assert.assertEquals(i / 10, World.getX(i));
             Assert.assertEquals(i % 10, World.getY(i));
@@ -75,7 +75,7 @@ public class WorldTest {
             Assert.assertTrue(c.getType() > 0);
             Assert.assertEquals(1, c.getNrg());
             Assert.assertEquals(0, c.getCorpse());
-            Assert.assertEquals(0, c.getAnimal());
+            Assert.assertEquals("0=AZ=0-0-0-0-0", c.getAnimal().toString());
             Assert.assertEquals(0, c.getVolume());
             Assert.assertEquals(i / 10, c.getX());
             Assert.assertEquals(i % 10, c.getY());
@@ -91,7 +91,7 @@ public class WorldTest {
                 Assert.assertTrue(World.getType(x, y) > 0);
                 Assert.assertEquals(1, World.getNrg(x, y));
                 Assert.assertEquals(0, World.getCorpse(x, y));
-                Assert.assertEquals(0, World.getAnimal(x, y));
+                Assert.assertEquals("0=AZ=0-0-0-0-0", World.getAnimal(x, y).toString());
                 Assert.assertEquals(0, World.getVolume(x, y));
 
                 Assert.assertTrue(World.getData(EvoData.CELLS_BIOME, x, y) > 0);
@@ -104,7 +104,7 @@ public class WorldTest {
                 Assert.assertTrue(c.getType() > 0);
                 Assert.assertEquals(1, c.getNrg());
                 Assert.assertEquals(0, c.getCorpse());
-                Assert.assertEquals(0, c.getAnimal());
+                Assert.assertEquals("0=AZ=0-0-0-0-0", c.getAnimal().toString());
                 Assert.assertEquals(0, c.getVolume());
                 Assert.assertEquals(x, c.getX());
                 Assert.assertEquals(y, c.getY());

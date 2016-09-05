@@ -1,5 +1,7 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.animals.Animal;
+import serg.chertkov.evolution.animals.AnimalException;
 import serg.chertkov.evolution.utils.EvoData;
 
 /**
@@ -11,7 +13,7 @@ public class Cell {
     protected int growth;
     protected int nrg;
     protected int corpse;
-    protected int animal;
+    protected Animal animal;
     protected int volume;
     protected int x;
     protected int y;
@@ -20,16 +22,16 @@ public class Cell {
         type = 0;
         this.nrg = nrg;
         corpse = 0;
-        animal = 0;
+        animal = new Animal();
         volume = 0;
     }
 
-    public int getData(int dataType){
+    public long getData(int dataType){
         switch(dataType){
             case EvoData.CELLS_BIOME: return type;
             case EvoData.CELLS_NRG: return nrg;
             case EvoData.CELLS_CORPSE: return corpse;
-            case EvoData.CELLS_ANIMAL: return animal;
+            case EvoData.CELLS_ANIMAL: return animal.getId();
             case EvoData.CELLS_VOLUME: return volume;
             default: return 0;
         }
@@ -59,12 +61,20 @@ public class Cell {
         this.corpse = corpse;
     }
 
-    public int getAnimal() {
+    public Animal getAnimal() {
         return animal;
     }
 
-    public void setAnimal(int animal) {
+    public void setAnimal(Animal animal) {
         this.animal = animal;
+    }
+
+    public void setAnimal(String animal) {
+        try {
+            this.animal.set(animal);
+        } catch (AnimalException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getVolume() {

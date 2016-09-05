@@ -12,6 +12,7 @@ import serg.chertkov.evolution.world.World;
  */
 public class test {
     public static void main (String args[]){
+        System.out.println(Integer.MAX_VALUE);
         DataBase.setPrint(true);
         DataBase.connect();
         World w = new World();

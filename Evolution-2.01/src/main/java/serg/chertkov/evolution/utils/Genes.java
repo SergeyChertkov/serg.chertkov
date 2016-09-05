@@ -9,6 +9,7 @@ public class Genes {
     public static final String AllGenes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static final char START_CODON = 'A';
     public static final char [] END_CODON = {'X','Y','Z'};
+    public static final int MAX_LENGHT = 100000;
 
     public static String[] cleanGenes (String genes){
         int index_end_codon;

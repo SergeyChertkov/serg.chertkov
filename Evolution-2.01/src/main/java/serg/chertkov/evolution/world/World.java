@@ -1,5 +1,6 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.animals.Animal;
 import serg.chertkov.evolution.database.DataBase;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class World {
         return cells.get(i);
     }
 
-    public static int getData(int dataType, int i) {
+    public static long getData(int dataType, int i) {
         return cells.get(i).getData(dataType);
     }
 
@@ -34,7 +35,7 @@ public class World {
 
     public static int getCorpse(int i) {return cells.get(i).getCorpse();}
 
-    public static int getAnimal(int i) {return cells.get(i).getAnimal();}
+    public static Animal getAnimal(int i) {return cells.get(i).getAnimal();}
 
     public static int getVolume(int i) {return cells.get(i).getVolume();}
 
@@ -42,7 +43,7 @@ public class World {
         return cells.get(size*x+y);
     }
 
-    public static int getData(int dataType, int x, int y) {
+    public static long getData(int dataType, int x, int y) {
         return cells.get(size*x+y).getData(dataType);
     }
 
@@ -52,7 +53,7 @@ public class World {
 
     public static int getCorpse(int x, int y) {return cells.get(size*x+y).getCorpse();}
 
-    public static int getAnimal(int x, int y) {return cells.get(size*x+y).getAnimal();}
+    public static Animal getAnimal(int x, int y) {return cells.get(size*x+y).getAnimal();}
 
     public static int getVolume(int x, int y) {return cells.get(size*x+y).getVolume();}
 

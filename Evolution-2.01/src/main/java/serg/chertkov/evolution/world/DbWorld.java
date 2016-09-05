@@ -3,6 +3,7 @@ package serg.chertkov.evolution.world;
 import serg.chertkov.evolution.utils.EvoData;
 import serg.chertkov.evolution.database.DBResult;
 import serg.chertkov.evolution.database.DataBase;
+import serg.chertkov.evolution.utils.Genes;
 
 /**
  * Created by sergey on 12.03.2016.
@@ -14,7 +15,7 @@ public class DbWorld {
         DataBase.connect();
         DataBase.execute("DROP TABLE " + table_world);
         DataBase.execute("CREATE TABLE " + table_world +
-                " (XY int primary key, TYPE int, NRG int, CORPSE int, ANIMAL int)");
+                " (XY int primary key, TYPE int, NRG int, CORPSE int, ANIMAL varchar("+ Genes.MAX_LENGHT+"))");
         //System.out.println("table " + table_world + " was created.");
     }
 
@@ -35,7 +36,7 @@ public class DbWorld {
             c.setType(Integer.valueOf(res.get(0, 1)));
             c.setNrg(Integer.valueOf(res.get(0, 2)));
             c.setCorpse(Integer.valueOf(res.get(0, 3)));
-            c.setAnimal(Integer.valueOf(res.get(0, 4)));
+            c.setAnimal(res.get(0, 4));
         }
         return c;
     }
@@ -59,14 +60,14 @@ public class DbWorld {
                     DbWorld.table_world + " (XY, TYPE, NRG, CORPSE, ANIMAL) " +
                     "VALUES(" + xy + ", " + String.valueOf(c.getType()) + ", " +
                     String.valueOf(c.getNrg()) + ", " + String.valueOf(c.getCorpse()) +
-                    ", " + String.valueOf(c.getAnimal())+")");
+                    ", '" + c.getAnimal().toString()+"')");
         else
             DataBase.execute("UPDATE " +
                     DbWorld.table_world + " SET " +
                     "TYPE = " + String.valueOf(c.getType()) +
                     ", NRG = " + String.valueOf(c.getNrg()) +
                     ", CORPSE = " + String.valueOf(c.getCorpse()) +
-                    ", ANIMAL  = " + String.valueOf(c.getAnimal()) +
-                    " WHERE XY = " + xy);
+                    ", ANIMAL  = '" + c.getAnimal().toString() +
+                    "' WHERE XY = " + xy);
     }
 }

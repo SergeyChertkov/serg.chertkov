@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import serg.chertkov.evolution.animals.Animal;
+import serg.chertkov.evolution.animals.AnimalProperty;
 import serg.chertkov.evolution.utils.EvoData;
 
 /**
@@ -38,15 +40,16 @@ public class CellTest {
 
     @Test
     public void testGetData() {
+        Animal a = new Animal("0",new AnimalProperty(1,1,(short)1,(short)1,(byte)1));
         cell = new Ocean(0,0);
         cell.setNrg(2);
         cell.setCorpse(3);
-        cell.setAnimal(4);
+        cell.setAnimal(a);
         cell.setVolume(5);
 
         Assert.assertEquals(2, cell.getData(EvoData.CELLS_NRG));
         Assert.assertEquals(3, cell.getData(EvoData.CELLS_CORPSE));
-        Assert.assertEquals(4, cell.getData(EvoData.CELLS_ANIMAL));
+        Assert.assertEquals(0, cell.getData(EvoData.CELLS_ANIMAL));
         Assert.assertEquals(5, cell.getData(EvoData.CELLS_VOLUME));
     }
 

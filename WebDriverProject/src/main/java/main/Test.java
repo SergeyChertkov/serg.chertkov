@@ -4,7 +4,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Sergii_Chertkov on 9/29/2016.
@@ -24,7 +26,8 @@ public class Test {
         driver = new ChromeDriver();
 
         driver.get(URL);
-        driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1000,1200));
+
         byXpath(Element.login).sendKeys(user);
         byXpath(Element.password).sendKeys(password);
         byXpath(Element.loginButton).click();
@@ -37,8 +40,17 @@ public class Test {
             pause(2);
         }
 
-        findBarbarVillagesByRadius(2);
-
+        ArrayList<String> villages = findBarbarVillagesByRadius(1);
+        ArrayList<String> attackVillages = attackVillages();
+        villages.removeAll(attackVillages);
+        for (String village:
+                villages) {
+            System.out.print(village+", ");
+        }
+        for (int i=0; i<villages.size();i++){
+            if(!attack(villages.get(i)))
+                break;
+        }
 //        pause(10);
 //        driver.close();
 
@@ -86,25 +98,14 @@ public class Test {
         byXpath(Element.mapLink).click();
         pause(3);
         ArrayList<String> villageID = new ArrayList<String>();
-        ((JavascriptExecutor) driver).executeScript("document.getElementById('map_legend').focus()");
 
         villageID.addAll(findBarbarVillagesOnMap());
         if(radius>0){
             for(int r=1; r<=radius; r++){
-                byXpath(Element.mapNorth).click();
+                byXpath(Element.mapSouth).click();
                 pause(3);
                 villageID.addAll(findBarbarVillagesOnMap());
                 for(int i=0; i<r*2-1; i++){
-                    byXpath(Element.mapEast).click();
-                    pause(3);
-                    villageID.addAll(findBarbarVillagesOnMap());
-                }
-                for(int i=0; i<r*2; i++){
-                    byXpath(Element.mapSouth).click();
-                    pause(3);
-                    villageID.addAll(findBarbarVillagesOnMap());
-                }
-                for(int i=0; i<r*2; i++){
                     byXpath(Element.mapWest).click();
                     pause(3);
                     villageID.addAll(findBarbarVillagesOnMap());
@@ -114,13 +115,45 @@ public class Test {
                     pause(3);
                     villageID.addAll(findBarbarVillagesOnMap());
                 }
+                for(int i=0; i<r*2; i++){
+                    byXpath(Element.mapEast).click();
+                    pause(3);
+                    villageID.addAll(findBarbarVillagesOnMap());
+                }
+                for(int i=0; i<r*2; i++){
+                    byXpath(Element.mapSouth).click();
+                    pause(3);
+                    villageID.addAll(findBarbarVillagesOnMap());
+                }
             }
         }
-        for (String vill:
-             villageID) {
-            System.out.println(vill);
-        }
+        villageID.remove("undefined");
+        Set<String> hs = new HashSet<String>();
+        hs.addAll(villageID);
+        villageID.clear();
+        villageID.addAll(hs);
         return villageID;
+    }
+
+    public static boolean attack(String id){
+        driver.get(Element.villageURL+id);
+        pause(3);
+        byXpath(Element.sendTroops).click();
+        pause(3);
+        String allLight = byXpath(Element.unitsEntryAllLight).getText();
+        allLight = allLight.substring(1,allLight.length()-1);
+        if(Integer.valueOf(allLight)>=5){
+            byXpath(Element.unitInputLight).sendKeys("5");
+            pause(1);
+            byXpath(Element.targetAttack).click();
+            pause(3);
+            byXpath(Element.troopConfirmGo).click();
+            pause(3);
+            System.out.println("village " + id + " have attacked");
+            return true;
+        }
+        System.out.println("not enough units to attack "+id);
+        return false;
     }
 
     public static ArrayList<String> findBarbarVillagesOnMap (){
@@ -133,6 +166,28 @@ public class Test {
                 villageID.add(village.getAttribute("id").substring(12));
                 //System.out.println(village.getAttribute("id").substring(12));
             }
+        }
+        return villageID;
+    }
+
+    public static ArrayList<String> attackVillages (){
+        driver.get("https://ru43.voyna-plemyon.ru/game.php");
+        pause(2);
+        List<WebElement> villages = driver.findElements(By.xpath(Element.attackVillages));
+        ArrayList<String> villageUrls = new ArrayList<String>();
+        //System.out.println(villages.size());
+        for (WebElement village:
+                villages) {
+            //System.out.println(village.getAttribute("href"));
+            villageUrls.add(village.getAttribute("href"));
+        }
+        ArrayList<String> villageID = new ArrayList<String>();
+        for (String villageUrl:
+                villageUrls) {
+            driver.get(villageUrl);
+            pause(2);
+            //System.out.println(byXpath(Element.attackVillageId).getAttribute("data-id"));
+            villageID.add(byXpath(Element.attackVillageId).getAttribute("data-id"));
         }
         return villageID;
     }

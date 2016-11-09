@@ -1,4 +1,6 @@
     <jsp:include page="header.jsp" flush="true" />
+    <%if ((session.getAttribute("userid") == null) ||
+        (session.getAttribute("userid") == "")){%>
         <form method="post" action="login.jsp">
             <center>
             <table border="1" width="30%" cellpadding="3">
@@ -27,5 +29,8 @@
             </table>
             </center>
         </form>
+    <%} else {%>
+        You allready loged in as <b><%=session.getAttribute("userid")%></b>
+    <%}%>
     </body>
 </html>

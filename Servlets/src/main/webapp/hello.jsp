@@ -41,6 +41,10 @@
         <BR>user.home = <%= System.getProperty("user.home") %>
         <BR>user.dir = <%= System.getProperty("user.dir") %>
         <p>
-        Variable from servlet = <%= (request.getAttribute("attribute")) %>
+        <meta HTTP-EQUIV="Refresh" content="1">
+        <%= new java.util.Date () %>
+        </meta>
+
+
     </body>
 </html>

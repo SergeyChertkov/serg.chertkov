@@ -39,18 +39,47 @@ public class Test {
             byXpath(Element.confirm_yes).click();
             pause(2);
         }
+        //4800 4542 4681 4101 4850 5485 5526 5898 5585 5828 6836 5995
+        //5858 5829 5923 6237 6224 6247 6578 6511 6881 6678
+        //
+        do {
+            ArrayList<String> villages = findBarbarVillagesByRadius(10;
+            ArrayList<String> blackList = new ArrayList<String>();
+            blackList.add("5112");
+            //ArrayList<String> attackVillages = attackVillages();
+            //villages.removeAll(attackVillages);
+            villages.removeAll(blackList);
+            System.out.println(villages.size());
+            for (String village :
+                    villages) {
+                System.out.print(village + ", ");
+            }
+            System.out.print("\n");
+            for (int i = 0; i < villages.size(); i++) {
+                if (!attack(villages.get(i)))
+                    break;
+            }
+            blackList.addAll(villages);
 
-        ArrayList<String> villages = findBarbarVillagesByRadius(1);
-        ArrayList<String> attackVillages = attackVillages();
-        villages.removeAll(attackVillages);
-        for (String village:
-                villages) {
-            System.out.print(village+", ");
-        }
-        for (int i=0; i<villages.size();i++){
-            if(!attack(villages.get(i)))
-                break;
-        }
+            villages = findBarbarVillagesByRadius(1);
+            villages.removeAll(blackList);
+            System.out.println(villages.size());
+            for (String village :
+                    villages) {
+                System.out.print(village + ", ");
+            }
+            System.out.print("\n");
+            for (int i = 0; i < villages.size(); i++) {
+                if (!attack(villages.get(i)))
+                    break;
+            }
+
+
+            for(int i=20; i>0; i--) {
+                System.out.println("waiting" + i);
+                pause(60);
+            }
+        }while(true);
 //        pause(10);
 //        driver.close();
 
@@ -142,8 +171,8 @@ public class Test {
         pause(3);
         String allLight = byXpath(Element.unitsEntryAllLight).getText();
         allLight = allLight.substring(1,allLight.length()-1);
-        if(Integer.valueOf(allLight)>=5){
-            byXpath(Element.unitInputLight).sendKeys("5");
+        if(Integer.valueOf(allLight)>=3){
+            byXpath(Element.unitInputLight).sendKeys("3");
             pause(1);
             byXpath(Element.targetAttack).click();
             pause(3);

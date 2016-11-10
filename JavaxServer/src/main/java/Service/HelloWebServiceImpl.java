@@ -14,4 +14,10 @@ public class HelloWebServiceImpl implements HelloWebService {
         // просто возвращаем приветствие
         return "Hello, " + name + "!";
     }
+
+    @Override
+    public int getSum(int aParam, int bParam) {
+        // просто возвращаем приветствие
+        return aParam + bParam;
+    }
 }

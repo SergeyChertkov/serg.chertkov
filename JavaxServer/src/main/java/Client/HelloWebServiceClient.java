@@ -28,5 +28,6 @@ public class HelloWebServiceClient {
 
         // Ура! Теперь можно вызывать удаленный метод
         System.out.println(hello.getHelloString("JavaRush"));
+        System.out.println(hello.getSum(15, 23));
     }
 }

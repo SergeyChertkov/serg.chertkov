@@ -15,4 +15,8 @@ public interface HelloWebService {
     // говорим, что этот метод можно вызывать удаленно
     @WebMethod
     public String getHelloString(String name);
+
+    @WebMethod
+    public int getSum(int aParam, int bParam);
+
 }

@@ -4,30 +4,29 @@ import serg.chertkov.evolution.limbs.Limb;
 import serg.chertkov.evolution.utils.Genes;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by sergey on 27.02.2016.
  */
 public class Animal implements Action {
     private long id;
-    private String genes;
+    private String genes = "";
     private AnimalProperty property;
     private List<Limb> limbs;
     private String [] cleanGenes;
-    private String speciesGen;
+    private String identityGen = "";
 
     public Animal (String genes, AnimalProperty property){
         this.genes = genes;
         this.cleanGenes = Genes.cleanGenes(genes);
-        this.speciesGen = this.speciesGen();
+        this.identityGen = this.identityGen();
         this.property = property;
     }
 
     public Animal (Object obj) throws AnimalException {
         this.set(obj.toString());
         this.cleanGenes = Genes.cleanGenes(genes);
-        this.speciesGen = this.speciesGen();
+        this.identityGen = this.identityGen();
     }
 
     public Animal(){
@@ -37,10 +36,10 @@ public class Animal implements Action {
             e.printStackTrace();
         }
         this.cleanGenes = Genes.cleanGenes(genes);
-        this.speciesGen = this.speciesGen();
+        this.identityGen = this.identityGen();
     }
 
-    public String getSpeciesGen(){return this.speciesGen;}
+    public String getIdentityGen(){return this.identityGen;}
 
     public int countOfGenes(){
         return this.cleanGenes.length;
@@ -99,7 +98,7 @@ public class Animal implements Action {
     }
 
     public int hashCode(){
-        return this.genes.hashCode();
+        return this.identityGen.hashCode();
     }
 
     public boolean equals(Object obj){
@@ -109,7 +108,7 @@ public class Animal implements Action {
     }
 
     public boolean equals(Animal obj){
-        return this.speciesGen.equals(obj.getSpeciesGen());
+        return this.identityGen.equals(obj.getIdentityGen());
     }
 
     public long getId() {
@@ -135,7 +134,7 @@ public class Animal implements Action {
         return result;
     }
 
-    private String speciesGen (){
+    private String identityGen(){
         String speciesGen = "";
         for (int i=0; i<this.countOfGenes(); i++){
             if(this.cleanGenes[i].length()>3){

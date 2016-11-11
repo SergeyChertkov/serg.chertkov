@@ -6,11 +6,16 @@ package elements;
 public enum Element implements IHaveAnXPath {
 
     PAGE_TITLE("page title","//title"),
-    PHONE_TV_ELECTRONIC_LINK("Phone TV Electric link","//*[@data-title='Телефоны, ТВ и электроника']"),
-    SMARTPHONE_LINK("Smartphone link","//*[contains(text(),'Доступные смартфоны')]"),
-    PRODUCT_PAGINATION_1("page 1","//*[@page1]"),
-    PRODUCT_PAGINATION_2("page 2","//*[@page2]"),
-    PRODUCT_PAGINATION_3("page 3","//*[@page3]")
+    TELEFONY_TV_I_ELECTRONIKA_LINK("telefony tv i elektronika link","//a[contains(@href,'telefony-tv-i-ehlektronika')]"),
+    TELEFONY_LINK("telefony link", "//*[@class='pab-h3']//a[contains(@href,'telefony')]"),
+    SMARTFONY_LINK("smartfony link","//*[@class='pab-h3']//a[contains(@href,'smartfon')]"),
+
+    PRODUCT_NAME("product name", "//div[@class='g-i-tile-i-box-desc'][.//*[@class='g-tag g-tag-icon-middle-popularity sprite']]//*[@class='g-i-tile-i-title clearfix']/a"),
+    PRODUCT_PRICE("product price", "//div[@class='g-i-tile-i-box-desc'][.//*[@class='g-tag g-tag-icon-middle-popularity sprite']]//*[@class='g-price g-price-cheaper' or @class='g-price']"),
+
+    PRODUCT_PAGINATION_1("page 1","//*[@id='page1']"),
+    PRODUCT_PAGINATION_2("page 2","//*[@id='page2']"),
+    PRODUCT_PAGINATION_3("page 3","//*[@id='page3']")
     ;
 
     private final String name;
@@ -24,11 +29,6 @@ public enum Element implements IHaveAnXPath {
     public String getXPath() {
         return xpath;
     }
-
-//    private Element(String xpath) {
-//        this.name = "";
-//        this.xpath = xpath;
-//    }
 
     public static Element getEntryForElementName(String fieldNameToFind) {
         for (Element element : values()) {

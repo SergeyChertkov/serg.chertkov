@@ -14,6 +14,6 @@ public class MainPage extends Page {
 
     public Page clickOnPhoneTVElectricCategry(){
         clickOn("Phone TV Electric Link");
-        return new PhoneTVElectricPage(driver);
+        return new TelefonyTViElektronikaPage(driver);
     }
 }

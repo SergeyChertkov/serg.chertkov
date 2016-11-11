@@ -1,3 +1,4 @@
+import database.DBResult;
 import database.DataBase;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
@@ -16,13 +17,22 @@ public class TestCase {
     @BeforeClass
     public static void createTable(){
         DataBase.connect();
-        DataBase.execute("DROP TABLE PRODUCTS");
-        DataBase.execute("CREATE TABLE PRODUCTS (" +
+        DataBase.execute("drop table products");
+        DataBase.execute("create table products (" +
                 "  id int(10) unsigned NOT NULL auto_increment," +
-                "  name varchar(45) NOT NULL," +
-                "  price double(45) NOT NULL," +
+                "  name varchar(200) NOT NULL," +
+                "  price varchar(20) NOT NULL," +
                 "  PRIMARY KEY  (id)" +
                 ")");
+        DataBase.close();
+    }
+
+    @AfterClass
+    public static void checkTable(){
+        DataBase.connect();
+        DBResult result = new DBResult(DataBase.select("select * from products"));
+        System.out.println("\n\n==========RESULT==========\n"
+                + result + "====================");
         DataBase.close();
     }
 
@@ -42,12 +52,21 @@ public class TestCase {
     @Test
     public void TestScenario(){
         MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
-        PhoneTVElectricPage phoneTVElectricPage = PageFactory.initElements(driver, PhoneTVElectricPage.class);
-        SmartphonePage smartphonePage = PageFactory.initElements(driver, SmartphonePage.class);
+        TelefonyTViElektronikaPage telefonyTViEhlektronikaPage = PageFactory.initElements(driver, TelefonyTViElektronikaPage.class);
+        TelefonyPage telefonyPage = PageFactory.initElements(driver, TelefonyPage.class);
+        SmartphonyPage smartphonyPage = PageFactory.initElements(driver, SmartphonyPage.class);
 
-        mainPage.open().and().clickOn("Phone TV Electric link").
-                thenOnPage(phoneTVElectricPage).clickOn("Smartphone link").
-                thenOnPage(smartphonePage);
+        mainPage.open().
+                and().clickOn("telefony tv i elektronika link").
+                then().clickOn("telefony tv i elektronika link").
+                then().pageShouldBe(telefonyTViEhlektronikaPage).
+                then().clickOn("telefony link").
+                then().pageShouldBe(telefonyPage).
+                then().clickOn("smartfony link").
+                then().pageShouldBe(smartphonyPage);
+        smartphonyPage.saveTopProductsFromPage().and().clickOn("page 2");
+        smartphonyPage.saveTopProductsFromPage().and().clickOn("page 3");
+        smartphonyPage.saveTopProductsFromPage();
 
         try {
             Thread.sleep(5000);

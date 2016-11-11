@@ -1,5 +1,6 @@
 import database.DBResult;
 import database.DataBase;
+import database.Propert;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,7 +39,7 @@ public class TestCase {
 
     @Before
     public void init(){
-        System.setProperty("webdriver.chrome.driver", "D:/Projects/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", Propert.get("webdriver_path"));
         driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
@@ -50,7 +51,7 @@ public class TestCase {
     }
 
     @Test
-    public void TestScenario(){
+    public void testScenario(){
         MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
         TelefonyTViElektronikaPage telefonyTViEhlektronikaPage = PageFactory.initElements(driver, TelefonyTViElektronikaPage.class);
         TelefonyPage telefonyPage = PageFactory.initElements(driver, TelefonyPage.class);

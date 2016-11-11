@@ -6,7 +6,7 @@ import java.sql.*;
  * Created by Sergii_Chertkov on 2/17/2016.
  */
 public class DataBase {
-    private static final String DB_PATH = "D:/DB";
+    private static final String DB_PATH = Propert.get("db_folder");
     private static final String DB_DRIVER = "org.h2.Driver";
     private static final String DB_CONNECTION = "jdbc:h2:" + DB_PATH + "/servlets;IGNORECASE=FALSE";
     private static final String DB_USER = "";

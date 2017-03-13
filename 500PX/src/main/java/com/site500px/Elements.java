@@ -1,13 +1,18 @@
 package com.site500px;
 
 public enum Elements implements IHaveAnXPath{
-    SIGN_UP_LINK("sign up link","//*[@class='button static_nav__signup']"),
+    LOG_IN("log in","//*[@class='static_nav__login']"),
     EMAIL_FIELD("email field","//*[@id='email']"),
     PASS_FIELD("pass field","//*[@id='password']"),
-    SIGN_UP_BUTTON("sign up button","//*[@data-normal=\"Sign up\"]"),
+    LOG_IN_BUTTON("log in button","//*[@value='Log in']"),
 
     PHOTOS("photos","//*[@class='grid-container justified-gallery']/div[contains(@class,'photo')]"),
+
     ACTOR_NAME("actor name","//*[@class='attribution_region section']//*[@class='actor']"),
+    LIKE_PHOTO("like photo","//*[@class='actions_region section']//*[@class='like-button']//a"),
+    COMMENT_PHOTO("comment photo","//*[@class='new_comment']"),
+
+    CLOSE_PHOTO("close photo","//*[@class='close']"),
 
     ;
 

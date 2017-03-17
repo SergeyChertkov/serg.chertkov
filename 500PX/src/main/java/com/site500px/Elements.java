@@ -9,7 +9,8 @@ public enum Elements implements IHaveAnXPath{
     PHOTOS("photos","//*[@class='grid-container justified-gallery']/div[contains(@class,'photo')]"),
 
     ACTOR_NAME("actor name","//*[@class='attribution_region section']//*[@class='actor']"),
-    LIKE_PHOTO("like photo","//*[@class='actions_region section']//*[@class='like-button']//a"),
+    LIKE_PHOTO("like photo","//*[@class='actions_region section']//a[@class='button new_fav with_count']"),
+    UNLIKE_PHOTO("unlike photo","//*[@class='actions_region section']//a[@class='button new_fav with_count hearted']"),
     COMMENT_PHOTO("comment photo","//*[@class='new_comment']"),
 
     CLOSE_PHOTO("close photo","//*[@class='close']"),

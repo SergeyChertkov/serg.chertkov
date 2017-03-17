@@ -9,53 +9,69 @@ public class Main {
     private static WebDriver driver;
 
     public static void main(String[] args) {
-        String login = "partyson@ukr.net", pass = "party72895";
+        boolean isCycle = Boolean.parseBoolean(Property.get("cycle"));
+        int pauseBetweenCycles = 0;
+        if(isCycle){
+            pauseBetweenCycles = 60*Integer.parseInt(Property.get("pause_between_cycles_min"));
+        }
+        do {
+            initDriver();
+            login();
+            checkPhotoFromUrl("https://500px.com/fresh");
+            checkPhotoFromUrl("https://500px.com/upcoming");
+            driver.close();
+            pause(pauseBetweenCycles);
+        } while (isCycle);
+    }
 
-        System.setProperty("webdriver.chrome.driver", "D:/Drivers/chromedriver.exe");
+    private static void initDriver(){
+        System.setProperty("webdriver.chrome.driver", Property.get("path_to_driver"));
         driver = new ChromeDriver();
         driver.manage().window().setSize(new Dimension(1400, 1000));
+    }
 
+    private static void login(){
+        String login = "partyson@ukr.net", pass = "party72895";
         driver.get("https://500px.com/home");
         getElement(Elements.LOG_IN).click();
         getElement(Elements.EMAIL_FIELD).sendKeys(login);
         getElement(Elements.PASS_FIELD).sendKeys(pass);
         getElement(Elements.LOG_IN_BUTTON).click();
         pause(5);
-
-        driver.get("https://500px.com/fresh");
-        pause(5);
-        doing();
-
-        driver.get("https://500px.com/upcoming");
-        pause(5);
-        doing();
-
-        driver.close();
     }
 
-    private static void doing() {
-        int p = Integer.parseInt(Property.get("pause_to_look"));
+    private static void checkPhotoFromUrl(String url) {
+        int p = Integer.parseInt(Property.get("pause_to_look_sec"));
         int photosCount = Integer.parseInt(Property.get("photos_count"));
         int likesForLike = Integer.parseInt(Property.get("likes_for_like"));
         int likesForComment = Integer.parseInt(Property.get("likes_for_comment"));
+        WebElement element;
+
+        driver.get(url);
+        pause(5);
 
         for (int i = 1; i <= photosCount; i++) {
             new org.openqa.selenium.interactions.Actions(driver).moveToElement(linkPhoto(i)).perform();
             linkPhoto(i).click();
             pause(2);
             try {
-                if (countOfLikes() > likesForLike) {
+                if (countOfLikes() >= likesForLike) {
                     pause((int) (p + Math.random() * p));
-                    getElement(Elements.LIKE_PHOTO).click();
-                    if (countOfLikes() > likesForComment) {
-                        getElement(Elements.COMMENT_PHOTO).sendKeys(generateComment());
-                        getElement(Elements.COMMENT_PHOTO).sendKeys(Keys.ENTER);
-                        pause(2);
+                    element = getElement(Elements.LIKE_PHOTO);
+                    if (element != null) {
+                        element.click();
+                        if (countOfLikes() >= likesForComment) {
+                            pause(2);
+                            getElement(Elements.COMMENT_PHOTO).sendKeys(generateComment());
+                            pause(2);
+                            getElement(Elements.COMMENT_PHOTO).sendKeys(Keys.ENTER);
+                        }
+                        pause(3);
                     }
                 }
                 getElement(Elements.CLOSE_PHOTO).click();
                 pause(2);
-            }catch (Exception e){
+            } catch (Exception e) {
                 pause(2);
                 getElement(Elements.CLOSE_PHOTO).click();
                 pause(2);
@@ -77,7 +93,11 @@ public class Main {
     }
 
     private static WebElement getElement(IHaveAnXPath element) {
-        return driver.findElement(By.xpath(element.getXPath()));
+        try {
+            return driver.findElement(By.xpath(element.getXPath()));
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private static List<WebElement> getElements(IHaveAnXPath element) {

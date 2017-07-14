@@ -1,11 +1,15 @@
 package serg.chertkov.evolution.world;
 
+import serg.chertkov.evolution.anima.Animal;
+import serg.chertkov.evolution.anima.AnimalFunction;
+
 import static serg.chertkov.evolution.world.CellsType.*;
 
 public class Cell {
     char type;
     double energy = 0;
     double meat = 0;
+    Animal animal = null;
 
     public Cell(char type, double energy, double meat) {
         this.type = type;
@@ -70,6 +74,15 @@ public class Cell {
         if (energy >= max) {
             energy = max;
         }
+    }
+
+    public boolean isEmpty() {
+        return animal == null;
+    }
+
+    public Cell setAnimal(AnimalFunction animal) {
+        this.animal = (Animal) animal;
+        return this;
     }
 
 

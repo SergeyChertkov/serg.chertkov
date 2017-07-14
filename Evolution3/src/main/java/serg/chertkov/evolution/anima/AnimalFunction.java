@@ -1,7 +1,11 @@
 package serg.chertkov.evolution.anima;
 
+import serg.chertkov.evolution.world.WorldFunction;
+
 @SuppressWarnings("unused")
 public interface AnimalFunction {
+    Animal setWorld(WorldFunction world);
+
     Animal turnLeft();
 
     Animal turnRight();

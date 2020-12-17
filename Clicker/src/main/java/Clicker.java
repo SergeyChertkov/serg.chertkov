@@ -7,10 +7,13 @@ public class Clicker {
 
     public static void main(String[] args) throws InterruptedException, AWTException {
         Random rand = new Random();
+        int allActivityTime = 0;
+        int currActivityTime;
+        int dot = 0;
         boolean isPrevActive = true;
         Date start = new Date();
         SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
-        System.out.println(format.format(new Date()) + " Activity started");
+        System.out.println(format.format(new Date()) + " Activity  started");
         Robot bot = new Robot();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         PointerInfo a = MouseInfo.getPointerInfo();
@@ -27,15 +30,21 @@ public class Clicker {
                 height = rand.nextInt((int) screenSize.getHeight());
                 if (isPrevActive) {
                     Date finish = new Date();
-                    System.out.println("\nActivity time:               " + (finish.getTime() - start.getTime()) / 60000 + "m");
-                    System.out.println(format.format(finish) + " Activity finished");
+                    currActivityTime = (int) ((finish.getTime() - start.getTime()) / 60000);
+                    allActivityTime += currActivityTime;
+                    System.out.println("\n" + format.format(finish) + " Activity finished");
+                    System.out.printf("Activity time:      %5dm%n", currActivityTime);
+                    System.out.println("▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭");
+                    System.out.printf("             TOTAL: %5.2fh%n", ((double) allActivityTime / 60));
                 }
                 bot.mouseMove(width, height);
                 isPrevActive = false;
             } else {
                 if (!isPrevActive) {
                     start = new Date();
-                    System.out.println(format.format(new Date()) + " Activity started");
+                    System.out.println("\n╔╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╗");
+                    System.out.println(format.format(new Date()) + " Activity  started");
+                    dot = 0;
                 }
                 width = x;
                 height = y;
@@ -43,7 +52,12 @@ public class Clicker {
             }
             Thread.sleep(150000);
             if (isPrevActive) {
-                System.out.print(".");
+                dot++;
+                if (dot > 26) {
+                    System.out.println();
+                    dot = 1;
+                }
+                System.out.print("▱");
             }
         }
     }

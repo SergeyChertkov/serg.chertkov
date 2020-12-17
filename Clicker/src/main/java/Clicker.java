@@ -13,7 +13,8 @@ public class Clicker {
         boolean isPrevActive = true;
         Date start = new Date();
         SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
-        System.out.println(format.format(new Date()) + " Activity  started");
+        System.out.println("\n╔══════════════════════════╗");
+        System.out.println("║" + format.format(new Date()) + " Activity started ║");
         Robot bot = new Robot();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         PointerInfo a = MouseInfo.getPointerInfo();
@@ -29,35 +30,44 @@ public class Clicker {
                 width = rand.nextInt((int) screenSize.getWidth());
                 height = rand.nextInt((int) screenSize.getHeight());
                 if (isPrevActive) {
+                    while (dot < 26) {
+                        System.out.print(" ");
+                        dot++;
+                    }
+                    System.out.print("║");
                     Date finish = new Date();
                     currActivityTime = (int) ((finish.getTime() - start.getTime()) / 60000);
                     allActivityTime += currActivityTime;
-                    System.out.println("\n" + format.format(finish) + " Activity finished");
-                    System.out.printf("Activity time:      %5dm%n", currActivityTime);
-                    System.out.println("▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭▭");
-                    System.out.printf("             TOTAL: %5.2fh%n", ((double) allActivityTime / 60));
+                    System.out.println("\n║" + format.format(finish) + " Activity paused  ║");
+                    System.out.printf("║Activity time:     %5dm ║%n", currActivityTime);
+                    System.out.println("╟──────────────────────────╢");
+                    System.out.printf("║            TOTAL: %5.2fh ║%n", ((double) allActivityTime / 60));
+                    System.out.println("╚══════════════════════════╝");
                 }
                 bot.mouseMove(width, height);
                 isPrevActive = false;
             } else {
                 if (!isPrevActive) {
                     start = new Date();
-                    System.out.println("\n╔╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╦╗");
-                    System.out.println(format.format(new Date()) + " Activity  started");
+                    System.out.println("\n╔══════════════════════════╗");
+                    System.out.println("║" + format.format(new Date()) + " Activity started ║");
                     dot = 0;
                 }
                 width = x;
                 height = y;
                 isPrevActive = true;
             }
-            Thread.sleep(150000);
+            Thread.sleep(150);
             if (isPrevActive) {
                 dot++;
                 if (dot > 26) {
-                    System.out.println();
+                    System.out.print("║\n");
                     dot = 1;
                 }
-                System.out.print("▱");
+                if (dot == 1) {
+                    System.out.print("║");
+                }
+                System.out.print("•");
             }
         }
     }

@@ -1,0 +1,14 @@
+Login with incorrect credentials (login)
+OBM WEB
+open obm.dc |  | obm.dc is opened; sign in form is present
+type to login incorrect login |  | login is fieled
+type to password field correct customer password |  | password is fieled and hiden as ******
+click on sign in button |  | button is clickable; error is present "Failed to sign in! Please check your credentials and try again."
+
+Login with incorrect credentials (password)
+OBM WEB
+open obm.dc |  | obm.dc is opened; sign in form is present
+type to login field correct customer login |  | login is fieled
+type to password field incorrect password |  | password is fieled and hiden as ******
+click on sign in button |  | button is clickable; error is present "Failed to sign in! Please check your credentials and try again."
+end

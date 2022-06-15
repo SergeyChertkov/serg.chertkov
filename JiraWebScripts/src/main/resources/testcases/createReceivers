@@ -1,0 +1,35 @@
+Create receivers as customer
+OBM WEB
+login as customer |  | loged in, and menu "Bulk Messaging -> Receivers" is present
+click on left menu "Bulk Messaging -> Receivers" |  | Receivers page is opened
+click on plus button |  | Creating receivers set page is opened; "Create" button is disabled
+type receivers name to the field |  | description is typed; "Create" button is enabled
+type description to the field |  | sender name is typed
+click on "FROM CSV" button |  | window with folder is opens
+select file and click open |  | list of all contacts is showed in Receivers list
+try to delete a contact via "X" button |  | popup "Are you sure?" is appeared
+click on "No" button |  | popup "Are you sure?" should be closed; contact not deleted
+try to delete a contact via "X" button |  | popup "Are you sure?" is appeared
+click on "Yes" button |  | popup "Are you sure?" should be closed; contact should be deleted
+click on "Create" button |  | popup "Created" is appeared
+click on "OK" button |  | popup "Created" should be closed; receivers should be present in the top of the receivers list
+click on number of the created receivers |  | receivers set page should be opened
+click on "Show records" button |  | list of contacts should be displayed; list of contacts should be as added
+
+Create receivers as customer
+OBM WEB
+login as customer |  | loged in, and menu "Bulk Messaging -> Receivers" is present
+click on left menu "Bulk Messaging -> Receivers" |  | Receivers page is opened
+click on plus button |  | Creating receivers set page is opened; "Create" button is disabled
+type receivers name to the field |  | description is typed; "Create" button is enabled
+type description to the field |  | sender name is typed
+click on "FROM CSV" button |  | window with folder is opens
+select file and click open |  | list of all contacts is showed in Receivers list
+try to delete a contact via "X" button |  | popup "Are you sure?" is appeared
+click on "No" button |  | popup "Are you sure?" should be closed; contact not deleted
+try to delete a contact via "X" button |  | popup "Are you sure?" is appeared
+click on "Yes" button |  | popup "Are you sure?" should be closed; contact should be deleted
+click on "Create" button |  | popup "Created" is appeared
+click on "OK" button |  | popup "Created" should be closed; receivers should be present in the top of the receivers list
+click on number of the created receivers |  | receivers set page should be opened
+click on "Show records" button |  | list of contacts should be displayed; list of contacts should be as added
